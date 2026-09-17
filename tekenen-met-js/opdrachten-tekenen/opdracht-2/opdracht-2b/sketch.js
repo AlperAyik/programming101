@@ -8,7 +8,7 @@ function draw() {
     let afstand = width / aantal;
 
     for(let y = 0; y < aantal; y++) {
-        let posY = afstand/ 2 + y * afstand;
+        let posY = afstand / 2 + y * afstand;
         for(let x = 0; x < aantal; x++) {
             let posX = afstand / 2 + x * afstand;
 
