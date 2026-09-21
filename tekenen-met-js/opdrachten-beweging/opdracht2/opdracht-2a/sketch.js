@@ -1,5 +1,5 @@
 let circles = [];
-let aantal = 50
+let aantal = 50;
 
 function setup() {
   createCanvas(320, 200);
@@ -21,7 +21,8 @@ function draw() {
   background(220);
   
   for(let obj of circles) {
-    const {x, y, size} = obj
+    let {x, y, size} = obj
+    x += 5;
     circle(x, y, size)
   }
 }
