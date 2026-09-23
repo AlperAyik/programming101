@@ -13,10 +13,10 @@ function setup() {
         vx: random(-2, 2),
         vy: random(-2, 2),
         diameter: random(10,40),
+        color: random(128, 169)
     })
   }
   console.log(circles)
-//   Ik gebruik vx express niet zodat ik direct met random kan werken (oefenen)
 }
 
 function draw() {
@@ -24,7 +24,7 @@ function draw() {
   
   for(let i = 0; i < circles.length; i++) {
     let ball = circles[i]
-    let {x, y, vx, vy, diameter} = ball
+    let {x, y, vx, vy, diameter, color} = ball
 
     ball.x += vx
     ball.y += vy
@@ -34,7 +34,7 @@ function draw() {
     if (ball.y < -ball.diameter) ball.y = height + ball.diameter;
     if (ball.y > height + ball.diameter) ball.y = -ball.diameter;
 
-    fill(x + 2 * 2, y + 2 * 2, x + y + 2 * 2)
+    fill(x + 2 * 2, y + 2 * 2, color)
     circle(x, y, diameter)
   }
 }
