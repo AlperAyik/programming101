@@ -18,9 +18,10 @@ function draw() {
 
         x += vx;
         y += vy;
+        let radius = 40 / 2
 
-        if (x > width || x < 0) vx = -vx
-        if (y > height || y < 0) vy = -vy
+        if (x + radius > width || x - radius < 0) vx = -vx
+        if (y + radius > height || y - radius< 0) vy = -vy
 
         circle(x, y, 40)
     }
