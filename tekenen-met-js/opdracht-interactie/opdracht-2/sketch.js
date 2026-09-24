@@ -19,7 +19,10 @@ function draw() {
   y += vy;
 
   let radius = diameter / 2;
+<<<<<<< HEAD
   
+=======
+>>>>>>> c5e7cd591aaa1cb06b09f8988f36d6fdb962d3d6
   let halfwidth = paddle.width / 2;
   let xRect = constrain(mouseX, halfwidth, width - halfwidth);
 
