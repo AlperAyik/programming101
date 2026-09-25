@@ -14,6 +14,7 @@ let paddle = {
 };
 
 let counter = 0;
+let lives = 3;
 
 function setup() {
     createCanvas(320, 200);
@@ -21,8 +22,16 @@ function setup() {
     fill(60);
 }
 
+function drawInfo() {
+    fill(0);
+    textSize(16);
+    textAlign(LEFT, TOP);
+    text("Lives: " + lives, 10, 10);
+}
+
 function draw() {
     background(220);
+    drawInfo();
 
     ball.x += ball.vx;
     ball.y += ball.vy;
@@ -49,8 +58,17 @@ function draw() {
         ball.vx = -ball.vx;
     }
 
-    if (ball.y + radius > height || ball.y - radius < 0) {
+    if ( ball.y - radius < 0) {
         ball.vy = -ball.vy;
+    }
+
+    if(ball.y - radius > height) {
+        lives--;
+        if (lives <= 0) {
+            gameOver();
+        } else {
+            resetBall();
+        }
     }
 
     fill(60);
@@ -82,4 +100,39 @@ function bounceBall(ball, paddle) {
 
         ball.vy = -ball.vy;
     }
+}
+
+function resetBall() {
+    ball.x = 60;
+    ball.y = 50;
+    ball.vx = 3.5;
+    ball.vy = 2.4;
+}
+
+
+function gameOver() {
+    fill(0);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text("Game Over", width / 2, height / 2);
+    noLoop();
+
+    resetGame();
+}
+
+function resetGame() {
+    fill(0);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text("Click to restart", width / 2, height / 2 + 40);
+    ball.x = width / 2;
+    ball.y = 50;
+    ball.vx = 3.5;
+    ball.vy = 2.4;
+    lives = 3;
+}
+
+function mousePressed() {
+    draw();
+    loop();
 }
