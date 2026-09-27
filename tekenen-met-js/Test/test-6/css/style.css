@@ -11,3 +11,11 @@ body {
     min-height: 100vh;
     background: #f0f0f0;
 }
+
+.header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+}
