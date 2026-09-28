@@ -3,5 +3,6 @@ function setup() {
 }
 
 function draw() {
-    background(220);
+    // Achtergrond kleur is lichtblauw
+    background(125, 150, 175);
 }

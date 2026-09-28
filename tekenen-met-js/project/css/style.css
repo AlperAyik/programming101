@@ -11,3 +11,10 @@ body {
     min-height: 100vh;
     background: #f0f0f0;
 }
+
+.title_box {
+    position: absolute;
+    top: 0;
+    text-align: center;
+    padding: 10px 0;
+}
