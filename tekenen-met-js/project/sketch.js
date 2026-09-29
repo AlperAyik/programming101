@@ -1,7 +1,8 @@
 const balls = [];
 let start = false;
-let amount = 10;
+let amount = 20;
 let playing = false;
+let score = 0;
 
 function setup() {
     createCanvas(640, 480);
@@ -13,9 +14,12 @@ function draw() {
     background(125, 150, 175);
 
     if(playing) {
-        fallingballs()
+        fallingballs();
+        movePlayer();
+        scoreTracker();
+        score++;
     } else {
-        startMenu()
+        startMenu();
     }
 }
 
@@ -40,17 +44,24 @@ function fallingballs() {
 
         let radius = diameter / 2;
 
-        if(ball.y + radius > height + radius) {
+        if(ball.y + radius > height + radius + 10) {
             ball.y = -vy;
             ball.x = random(0 + radius, width - radius);
             ball.diameter = random(30, 80);
         }
 
         ball.y += vy;
-
+        
         fill(color1, color2, color3)
         circle(x, y, radius);
     }
+}
+
+function movePlayer() {
+    squareX = constrain(mouseX, 0, width - 20);
+
+    fill(255, 100, 100);
+    square(squareX, height - 30, 20, 20);
 }
 
 
@@ -59,6 +70,13 @@ function startMenu() {
     textSize(16);
     textAlign(LEFT, TOP);
     text(`Klik om te starten`, 10, 20);
+}
+
+function scoreTracker() {
+    fill(0);
+    textSize(16);
+    textAlign(RIGHT, TOP);
+    text(`Score: ${Math.floor(score / 60)}`, width - 10, 20);
 }
 
 function mousePressed() {

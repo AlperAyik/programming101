@@ -1,0 +1,1 @@
+Hier komen de zelfde debug report zoals in het word document
