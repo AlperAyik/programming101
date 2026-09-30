@@ -1,5 +1,4 @@
 const balls = [];
-let start = false;
 let amount = 20;
 let playing = false;
 let score = 0;
@@ -72,14 +71,12 @@ function checkCollision() {
 
         let distance = sqrt(distanceX * distanceX + distanceY * distanceY);
 
-        if (distance + 20 < radius) {
+        if (distance < radius) {
+            // collision smoother maken
             if(levens > 0) {
                 levens--;
             } else {
                 gameOver();
-                resetMenu();
-                resetGame();
-                playing = false;
             }
         }
     }
@@ -101,10 +98,14 @@ function startMenu() {
 }
 
 function gameOver() {
+    playing = false;
+
     fill(0);
     textSize(16);
     textAlign(CENTER, CENTER);
     text(`Game Over!`, width / 2, height / 2);
+    text(`Klik om opnieuw te starten`, width / 2, height / 2 + 30);
+
     noLoop();
 }
 
@@ -116,9 +117,11 @@ function resetMenu() {
 }
 
 function resetGame() {
-    balls.length = 0;
+    balls.length = [];
     score = 0;
     levens = 3;
+    playing = false;
+    console.log(playing)
 }
 
 function scoreTracker() {
@@ -130,7 +133,9 @@ function scoreTracker() {
 
 function mousePressed() {
     if (playing === false) {
+        resetGame();
         createBalls();
-        playing = true
+        playing = true;
+        loop();
     }
 }
