@@ -179,6 +179,20 @@ De user stories zijn geordend op basis van de onderdelen van mijn game. Elke use
 * [ ] De speler kan een moeilijkheidsniveau kiezen of aanpassen.
 * [ ] Het gekozen niveau heeft invloed op de moeilijkheid van het spel, bijvoorbeeld op de snelheid van de vallende ballen.
 
+## 12. Game wordt moeilijker tijdens het spelen
+
+**Prioriteit:** Should have
+
+### User story
+
+> Als speler wil ik dat de game steeds moeilijker wordt wanneer ik meer punten behaal, zodat de uitdaging tijdens het spelen blijft toenemen.
+
+### Acceptatiecriteria
+
+* [ ] De moeilijkheid van de game neemt toe wanneer de score een bepaalde hoeveelheid punten bereikt.
+* [ ] De moeilijkheidstoename heeft zichtbaar effect op de gameplay, bijvoorbeeld doordat de ballen sneller gaan vallen.
+
+
 ---
 
 # Prioritering en bouwvolgorde
