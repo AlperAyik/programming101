@@ -2,7 +2,9 @@ const balls = [];
 let amount = 20;
 let playing = false;
 let score = 0;
-let levens = 3;
+let pause = false;
+
+const highScore = localStorage.getItem('highscore') || 0;
 
 function setup() {
     createCanvas(640, 480);
@@ -14,13 +16,21 @@ function draw() {
     background(125, 150, 175);
 
     if (playing) {
-        fallingballs();
-        movePlayer();
-        checkCollision();
-        scoreTracker();
-        score++;
+        if (pause) {
+            pauzeTekst();
+        } else {
+            fallingballs();
+            movePlayer();
+            checkCollision();
+            scoreTracker();
+            score++;
+        }
     } else {
         startMenu();
+    }
+
+    if (score > highScore * 60) {
+        localStorage.setItem('highscore', Math.floor(score / 60));
     }
 }
 
@@ -41,26 +51,25 @@ function createBalls() {
 
 function fallingballs() {
     for (let ball of balls) {
-        const { x, y, vx, vy, diameter, color1, color2, color3 } = ball
+        const { x, y, vx, vy, diameter, color1, color2, color3 } = ball;
 
         let radius = diameter / 2;
 
         if (ball.y + radius > height + radius + 10) {
             ball.y = -vy;
-            ball.x = random(0 + radius, width - radius);
+            ball.x = random(radius, width - radius);
             ball.diameter = random(30, 80);
         }
 
         ball.y += vy;
 
-        fill(color1, color2, color3)
-        circle(x, y, radius);
+        fill(color1, color2, color3);
+        circle(x, y, diameter);
     }
 }
 
 function checkCollision() {
     for (let ball of balls) {
-
         let radius = ball.diameter / 2;
 
         let closestX = constrain(ball.x, squareX, squareX + 20);
@@ -72,12 +81,7 @@ function checkCollision() {
         let distance = sqrt(distanceX * distanceX + distanceY * distanceY);
 
         if (distance < radius) {
-            // collision smoother maken
-            if(levens > 0) {
-                levens--;
-            } else {
-                gameOver();
-            }
+            gameOver();
         }
     }
 }
@@ -98,6 +102,7 @@ function startMenu() {
 }
 
 function gameOver() {
+    background(125, 150, 175);
     playing = false;
 
     fill(0);
@@ -105,16 +110,11 @@ function gameOver() {
     textAlign(CENTER, CENTER);
     text(`Game Over!`, width / 2, height / 2);
     text(`Klik om opnieuw te starten`, width / 2, height / 2 + 30);
+    text(`highscore: ${highScore}`, width / 2, height / 2 + 60);
 
     noLoop();
 }
 
-function resetMenu() {
-    fill(0);
-    textSize(16);
-    textAlign(CENTER, CENTER);
-    text(`Klik om opnieuw te starten`, width / 2, height / 2 + 20);
-}
 
 function resetGame() {
     balls.length = [];
@@ -131,11 +131,37 @@ function scoreTracker() {
     text(`Score: ${Math.floor(score / 60)}`, width - 10, 20);
 }
 
+function highScoreText() {
+    fill(0);
+    textSize(12);
+    textAlign(CENTER, CENTER);
+
+    if(score > highScore) {
+        text(`nieuwe highscore: ${highScore}`, width - 10, 20);
+    } else {
+        text(`highscore: ${highScore}`, width - 10, 20);
+    }
+    
+}
+
+function pauzeTekst() {
+    fill(0);
+    textSize(16);
+    textAlign(CENTER, CENTER);
+    text('Pauze', width / 2, height / 2)
+}
+
 function mousePressed() {
     if (playing === false) {
         resetGame();
         createBalls();
         playing = true;
         loop();
+    }
+}
+
+function keyPressed() {
+    if (keyCode === 32 && playing === true) {
+        pause = !pause;
     }
 }

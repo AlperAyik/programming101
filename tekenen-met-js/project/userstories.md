@@ -222,8 +222,6 @@ De **Must have**-stories vormen samen de minimale werkende versie van de game:
 * Speler besturen
 * Game over bij botsing
 
-Wanneer deze onderdelen werken, is er al een eenvoudige speelbare game. Daarna kunnen de **Should have**- en **Could have**-stories worden toegevoegd om de game verder uit te werken.
-
 ---
 
 # Schetsen
