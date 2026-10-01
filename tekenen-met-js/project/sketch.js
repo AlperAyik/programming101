@@ -1,24 +1,32 @@
 const balls = [];
+const buttons = document.querySelectorAll('button');
 let amount = 20;
 let playing = false;
 let score = 0;
 let pause = false;
 
+buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        gameDifficulty(btn.textContent);
+    })
+})
+
 const highScore = localStorage.getItem('highscore') || 0;
 
 function setup() {
     createCanvas(640, 480);
-
+    drawBackground();
     startMenu();
 }
 
 function draw() {
-    background(125, 150, 175);
+    
 
     if (playing) {
         if (pause) {
             pauzeTekst();
         } else {
+            drawBackground();
             fallingballs();
             movePlayer();
             checkCollision();
@@ -32,6 +40,29 @@ function draw() {
     if (score > highScore * 60) {
         localStorage.setItem('highscore', Math.floor(score / 60));
     }
+}
+
+function gameDifficulty(diff) {
+    if (diff === 'Makkelijk') {
+        amount = 20;
+    } else if (diff === 'Moeilijk') {
+        amount = 30;
+    } else if (diff === 'Extra moeilijk') {
+        amount = 40;
+    }
+}
+
+function drawBackground() {
+    background(10, 15, 35);
+
+    fill(255);
+    noStroke();
+
+    ellipse(random(width), random(height), 3, 3);
+    ellipse(random(width), random(height), 5, 5);
+    ellipse(random(width), random(height), 1, 1);
+    ellipse(random(width), random(height), 2, 2);
+    ellipse(random(width), random(height), 5, 5);
 }
 
 function createBalls() {
@@ -95,22 +126,22 @@ function movePlayer() {
 
 
 function startMenu() {
-    fill(0);
+    fill(255, 255, 255);
     textSize(16);
     textAlign(LEFT, TOP);
-    text(`Klik om te starten`, 10, 20);
+    text(`Dubbel klik om te starten`, 10, 20);
 }
 
 function gameOver() {
     background(125, 150, 175);
     playing = false;
 
-    fill(0);
+    fill(255, 255, 255);
     textSize(16);
     textAlign(CENTER, CENTER);
     text(`Game Over!`, width / 2, height / 2);
-    text(`Klik om opnieuw te starten`, width / 2, height / 2 + 30);
-    text(`highscore: ${highScore}`, width / 2, height / 2 + 60);
+    text(`Dubbel klik om opnieuw te starten`, width / 2, height / 2 + 30);
+    text(`Highscore: ${highScore}`, width / 2, height / 2 + 60);
 
     noLoop();
 }
@@ -125,33 +156,33 @@ function resetGame() {
 }
 
 function scoreTracker() {
-    fill(0);
+    fill(255, 255, 255);
     textSize(16);
     textAlign(RIGHT, TOP);
     text(`Score: ${Math.floor(score / 60)}`, width - 10, 20);
 }
 
 function highScoreText() {
-    fill(0);
+    fill(255, 255, 255);
     textSize(12);
     textAlign(CENTER, CENTER);
 
-    if(score > highScore) {
+    if (score > highScore) {
         text(`nieuwe highscore: ${highScore}`, width - 10, 20);
     } else {
         text(`highscore: ${highScore}`, width - 10, 20);
     }
-    
+
 }
 
 function pauzeTekst() {
-    fill(0);
+    fill(255, 255, 255);
     textSize(16);
     textAlign(CENTER, CENTER);
     text('Pauze', width / 2, height / 2)
 }
 
-function mousePressed() {
+function doubleClicked() {
     if (playing === false) {
         resetGame();
         createBalls();

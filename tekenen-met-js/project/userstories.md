@@ -1,48 +1,50 @@
-# User Stories – p5.js Project
+# User Stories – p5.js project
 
 ## Inleiding
 
-In dit document houd ik mijn user stories, schetsen en andere onderdelen van mijn p5.js-project bij.
+In dit Word-document houd ik mijn user stories, schetsen en andere onderdelen bij binnen mijn p5.js-project. De user stories beschrijven welke functionaliteiten ik in mijn game wil maken en wat de speler met deze functionaliteiten moet kunnen doen.
 
-## User Stories – Programming 101
-
-De user stories zijn geordend op basis van de onderdelen van mijn game. Elke user story beschrijft één duidelijk onderdeel van de game en is klein genoeg om binnen een paar uur te kunnen bouwen en testen.
-
-### Prioriteiten
-
-* **Must have** → noodzakelijk voor een werkende game.
-* **Should have** → belangrijk voor de speelbaarheid en duidelijkheid van de game.
-* **Could have** → extra functionaliteit die wordt toegevoegd als er voldoende tijd is.
+Tijdens het ontwikkelen kunnen er nieuwe ideeën ontstaan of bestaande ideeën worden aangepast. Daarom houd ik ook bij welke onderdelen later zijn toegevoegd of veranderd.
 
 ---
 
-## 1. Canvas aanmaken
+# Prioriteiten
+
+Ik gebruik drie prioriteiten voor mijn user stories:
+
+* **Must have** – noodzakelijk voor de minimale werkende versie van de game.
+* **Should have** – belangrijk voor een betere speelervaring, maar de game kan zonder deze functionaliteit nog steeds werken.
+* **Could have** – extra functionaliteiten die ik kan toevoegen als daar tijd voor is.
+
+---
+
+# User Stories
+
+## 1. Canvas en achtergrond
 
 **Prioriteit:** Must have
 
-### User story
-
-> Als speler wil ik een canvas van 640 × 480 pixels met een achtergrondkleur zien, zodat ik de speelomgeving van de game kan zien.
+**Als speler wil ik een canvas van 640x480 pixels met een achtergrondkleur, zodat ik een duidelijk speelveld heb.**
 
 ### Acceptatiecriteria
 
-* [ ] Het canvas heeft een breedte van 640 pixels en een hoogte van 480 pixels.
-* [ ] Het canvas heeft een zichtbare achtergrondkleur.
+* [x] Het canvas is 640x480 pixels.
+* [x] Het canvas heeft een vaste achtergrondkleur.
+* [x] De game wordt binnen het canvas weergegeven.
 
 ---
 
-## 2. Startmenu maken
+## 2. Startmenu
 
 **Prioriteit:** Should have
 
-### User story
-
-> Als speler wil ik een startmenu zien met een startknop, zodat ik het spel kan starten wanneer ik klaar ben om te spelen.
+**Als speler wil ik een startmenu zien voordat het spel begint, zodat ik weet hoe ik de game kan starten.**
 
 ### Acceptatiecriteria
 
-* [ ] Bij het openen van de game wordt het startmenu weergegeven.
-* [ ] De speler kan door op de startknop te klikken het spel starten.
+* [x] Er wordt een startmenu weergegeven.
+* [x] Er is een duidelijke knop of tekst om de game te starten.
+* [x] De game begint pas nadat de speler op starten klikt.
 
 ---
 
@@ -50,29 +52,28 @@ De user stories zijn geordend op basis van de onderdelen van mijn game. Elke use
 
 **Prioriteit:** Must have
 
-### User story
-
-> Als speler wil ik dat er ballen vanaf de bovenkant van het canvas naar beneden vallen, zodat er een uitdaging ontstaat tijdens het spelen.
+**Als speler wil ik dat er ballen vanaf de bovenkant van het scherm naar beneden vallen, zodat ik obstakels heb die ik moet ontwijken.**
 
 ### Acceptatiecriteria
 
-* [ ] De ballen verschijnen aan de bovenkant van het canvas.
-* [ ] De ballen bewegen automatisch naar beneden.
+* [x] Ballen verschijnen bovenaan het canvas.
+* [x] De ballen bewegen naar beneden.
+* [x] Wanneer een bal onder het scherm komt, kan deze opnieuw bovenaan verschijnen.
+* [x] Er zijn meerdere ballen tegelijkertijd aanwezig.
 
 ---
 
-## 4. Verschillende ballen
+## 4. Verschillende balgroottes en kleuren
 
 **Prioriteit:** Should have
 
-### User story
-
-> Als speler wil ik dat de vallende ballen verschillende groottes en kleuren hebben, zodat de ballen van elkaar verschillen.
+**Als speler wil ik ballen met verschillende groottes en kleuren zien, zodat de game gevarieerder en duidelijker wordt.**
 
 ### Acceptatiecriteria
 
-* [ ] De ballen hebben verschillende groottes.
-* [ ] De ballen hebben verschillende kleuren.
+* [x] Niet iedere bal heeft dezelfde grootte.
+* [x] Ballen kunnen verschillende kleuren hebben.
+* [x] De grootte en kleur worden zichtbaar weergegeven.
 
 ---
 
@@ -80,29 +81,29 @@ De user stories zijn geordend op basis van de onderdelen van mijn game. Elke use
 
 **Prioriteit:** Must have
 
-### User story
-
-> Als speler wil ik mijn speler met mijn muis kunnen bewegen, zodat ik de vallende ballen kan ontwijken.
+**Als speler wil ik mijn speler met mijn muis kunnen besturen, zodat ik de vallende ballen kan ontwijken.**
 
 ### Acceptatiecriteria
 
-* [ ] De speler kan de positie van de speler met de muis veranderen.
-* [ ] De speler kan niet buiten het canvas bewegen.
+* [x] De speler beweegt horizontaal mee met de muis.
+* [x] De speler kan niet buiten het canvas bewegen.
+* [x] De speler blijft onderaan het speelveld.
 
 ---
 
-## 6. Game over bij botsing
+## 6. Levens en botsingen
 
 **Prioriteit:** Must have
 
-### User story
-
-> Als speler wil ik dat het spel stopt wanneer mijn speler een bal raakt, zodat duidelijk is dat ik het spel heb verloren.
+**Als speler wil ik meerdere levens hebben en een leven verliezen wanneer ik door een bal wordt geraakt, zodat ik meerdere kansen heb om mijn score te verbeteren.**
 
 ### Acceptatiecriteria
 
-* [ ] Een botsing tussen de speler en een bal wordt gedetecteerd.
-* [ ] Het spel stopt zodra er een botsing plaatsvindt.
+* [ ] De speler begint met een vast aantal levens.
+* [ ] Wanneer de speler een bal raakt, wordt er één leven afgetrokken.
+* [x] De resterende levens worden weergegeven.
+* [ ] Wanneer alle levens op zijn, eindigt de game.
+* [ ] De speler kan tijdens één botsing niet meerdere levens tegelijk verliezen.
 
 ---
 
@@ -110,14 +111,14 @@ De user stories zijn geordend op basis van de onderdelen van mijn game. Elke use
 
 **Prioriteit:** Should have
 
-### User story
-
-> Als speler wil ik na een game over het spel opnieuw kunnen starten, zodat ik opnieuw kan proberen mijn score te verbeteren.
+**Als speler wil ik de game opnieuw kunnen starten nadat ik game over ben gegaan, zodat ik opnieuw kan proberen mijn score te verbeteren.**
 
 ### Acceptatiecriteria
 
-* [ ] Na een game over is er een mogelijkheid om het spel opnieuw te starten.
-* [ ] Bij het opnieuw starten begint een nieuwe gamesessie.
+* [x] Er wordt een game-over scherm weergegeven wanneer alle levens op zijn.
+* [x] De speler kan de game opnieuw starten.
+* [x] De score en levens worden opnieuw ingesteld.
+* [x] De vallende ballen worden opnieuw gestart.
 
 ---
 
@@ -125,154 +126,178 @@ De user stories zijn geordend op basis van de onderdelen van mijn game. Elke use
 
 **Prioriteit:** Should have
 
-### User story
-
-> Als speler wil ik tijdens het spelen mijn overlevingstijd als score kunnen zien, zodat ik weet hoe lang ik in het spel heb overleefd.
+**Als speler wil ik punten krijgen naarmate ik langer overleef, zodat ik mijn voortgang kan bijhouden.**
 
 ### Acceptatiecriteria
 
-* [ ] De score wordt tijdens het spelen weergegeven.
-* [ ] De score loopt op zolang de speler in leven is.
+* [x] De score wordt tijdens het spelen bijgehouden.
+* [x] De score wordt zichtbaar weergegeven.
+* [x] De score neemt toe zolang de speler in leven blijft.
+* [x] De score wordt opnieuw ingesteld wanneer een nieuw spel begint.
 
 ---
 
-## 9. Hoogste score bewaren
+## 9. Highscore
 
 **Prioriteit:** Could have
 
-### User story
-
-> Als speler wil ik na een game over mijn hoogste score kunnen zien, zodat ik mijn huidige score met mijn beste score kan vergelijken.
+**Als speler wil ik mijn hoogste score kunnen zien, zodat ik kan proberen mijn vorige score te verbeteren.**
 
 ### Acceptatiecriteria
 
-* [ ] De behaalde score wordt na een game over vergeleken met de huidige hoogste score.
-* [ ] Als de behaalde score hoger is, wordt deze de nieuwe hoogste score.
+* [x] De hoogste score wordt bijgehouden.
+* [x] De highscore wordt weergegeven wanneer dat relevant is.
+* [x] Een nieuwe highscore wordt opgeslagen wanneer de huidige score hoger is dan de vorige.
 
 ---
 
-## 10. Speluitleg tonen
+## 10. Uitleg van de game
 
 **Prioriteit:** Should have
 
-### User story
-
-> Als speler wil ik naast het canvas een informatiebord met de spelregels kunnen zien, zodat ik weet hoe het spel werkt.
+**Als speler wil ik uitleg krijgen over hoe de game werkt, zodat ik weet wat ik moet doen.**
 
 ### Acceptatiecriteria
 
-* [ ] Naast het canvas wordt een informatiebord weergegeven.
-* [ ] Het informatiebord bevat een korte uitleg van de spelregels en besturing.
+* [ ] Er wordt uitgelegd hoe de speler wordt bestuurd.
+* [ ] Er wordt uitgelegd wat de speler moet ontwijken.
+* [ ] Er wordt uitgelegd hoe de score en levens werken.
+* [ ] De uitleg is zichtbaar voordat of tijdens het starten van de game.
 
 ---
 
-## 11. Moeilijkheid aanpassen
+## 11. Moeilijkheid handmatig aanpassen
 
 **Prioriteit:** Could have
 
-### User story
-
-> Als speler wil ik de moeilijkheid van het spel kunnen aanpassen, zodat ik het spel makkelijker of moeilijker kan maken.
+**Als speler wil ik de moeilijkheid van de game kunnen aanpassen, zodat ik zelf kan bepalen hoe uitdagend het spel is.**
 
 ### Acceptatiecriteria
 
-* [ ] De speler kan een moeilijkheidsniveau kiezen of aanpassen.
-* [ ] Het gekozen niveau heeft invloed op de moeilijkheid van het spel, bijvoorbeeld op de snelheid van de vallende ballen.
+* [x] De speler kan een moeilijkheidsniveau kiezen.
+* [x] De gekozen moeilijkheid heeft invloed op de game.
+* [x] Bij een hogere moeilijkheidsgraad is de game uitdagender.
 
-## 12. Game wordt moeilijker tijdens het spelen
+---
+
+## 12. Moeilijkheid verhogen tijdens het spelen
 
 **Prioriteit:** Should have
 
-### User story
-
-> Als speler wil ik dat de game steeds moeilijker wordt wanneer ik meer punten behaal, zodat de uitdaging tijdens het spelen blijft toenemen.
+**Als speler wil ik dat de game steeds moeilijker wordt wanneer ik meer punten behaal, zodat de uitdaging tijdens het spelen blijft toenemen.**
 
 ### Acceptatiecriteria
 
-* [ ] De moeilijkheid van de game neemt toe wanneer de score een bepaalde hoeveelheid punten bereikt.
-* [ ] De moeilijkheidstoename heeft zichtbaar effect op de gameplay, bijvoorbeeld doordat de ballen sneller gaan vallen.
-
-
----
-
-# Prioritering en bouwvolgorde
-
-De user stories zijn hieronder in dezelfde volgorde weergegeven als hierboven. De prioriteit geeft aan hoe belangrijk de user story is voor het uiteindelijke resultaat.
-
-|  # | User story             | Prioriteit  | Waarom?                                                                                    |
-| -: | ---------------------- | ----------- | ------------------------------------------------------------------------------------------ |
-|  1 | Canvas aanmaken        | Must have   | Dit vormt de basis van de game-omgeving.                                                   |
-|  2 | Startmenu maken        | Should have | Hiermee krijgt de game een duidelijke start.                                               |
-|  3 | Vallende ballen        | Must have   | Dit vormt een belangrijk onderdeel van de gameplay en zorgt voor een uitdaging.            |
-|  4 | Verschillende ballen   | Should have | Dit zorgt voor meer variatie in de obstakels.                                              |
-|  5 | Speler besturen        | Must have   | De speler moet de speler kunnen besturen om de ballen te ontwijken.                        |
-|  6 | Game over bij botsing  | Must have   | Dit zorgt ervoor dat de game eindigt wanneer de speler wordt geraakt.                      |
-|  7 | Game opnieuw starten   | Should have | Hiermee kan de speler na een game over opnieuw spelen.                                     |
-|  8 | Score bijhouden        | Should have | Hiermee kan de speler zien hoe lang hij of zij heeft overleefd.                            |
-|  9 | Hoogste score bewaren  | Could have  | Dit geeft de speler een extra doel om de score te verbeteren.                              |
-| 10 | Speluitleg tonen       | Should have | Hiermee weet de speler hoe de game werkt en bestuurd wordt.                                |
-| 11 | Moeilijkheid aanpassen | Could have  | Dit voegt extra functionaliteit toe en geeft de speler meer controle over de moeilijkheid. |
-
-## Minimale werkende versie
-
-De **Must have**-stories vormen samen de minimale werkende versie van de game:
-
-* Canvas aanmaken
-* Vallende ballen
-* Speler besturen
-* Game over bij botsing
+* [ ] De moeilijkheid verandert wanneer de speler een bepaald aantal punten behaalt.
+* [ ] De ballen kunnen bijvoorbeeld sneller gaan bewegen.
+* [ ] De moeilijkheid wordt stapsgewijs verhoogd.
+* [ ] De speler merkt tijdens het spelen dat de game moeilijker wordt.
 
 ---
 
-# Schetsen
+## 13. Health power-up
 
-Hier komen de schetsen van het p5.js-project te staan.
+**Prioriteit:** Could have
 
-<!-- Voeg hier de gemaakte schetsen toe. -->
+**Als speler wil ik tijdens het spelen een health power-up kunnen oppakken, zodat ik extra gezondheid of een extra leven kan krijgen.**
+
+### Acceptatiecriteria
+
+* [ ] Er kunnen health power-ups tijdens het spelen verschijnen.
+* [ ] De speler kan een power-up oppakken.
+* [ ] Na het oppakken krijgt de speler extra gezondheid of een extra leven.
+* [ ] De power-up verdwijnt nadat deze is opgepakt.
 
 ---
 
 # Wat later nog is toegevoegd
 
-Tijdens het ontwikkelen van de game kunnen nieuwe ideeën, functies of verbeteringen ontstaan. Deze worden hieronder bijgehouden.
+Tijdens het ontwikkelen van het project zijn er nieuwe ideeën ontstaan en zijn sommige bestaande functionaliteiten aangepast.
 
-### Toegevoegde functionaliteiten
+## Levens en health power-up
 
-*
+Op **29-09-2026** ontstond het idee om niet direct game over te gaan wanneer de speler een bal raakt. In plaats daarvan krijgt de speler meerdere levens. Hierdoor kan de speler meerdere fouten maken voordat het spel eindigt.
 
-### Aangepaste user stories
+Op **30-09-2026** heb ik dit verder uitgewerkt tijdens het programmeren van de botsingen. De game gebruikt nu een levenssysteem waarbij een botsing één leven kost.
 
-*
+Daarnaast is het idee ontstaan om later een **health power-up** toe te voegen waarmee de speler extra gezondheid of een extra leven kan krijgen. Dit is toegevoegd als user story 13.
 
-### Reden voor de aanpassing
+## Moeilijkheid verhogen
 
-*
+Op **30-09-2026 / 01-10-2026** is het idee verder uitgewerkt om de game moeilijker te maken wanneer de speler meer punten behaalt.
 
-### Datum
+De bedoeling hiervan is dat de game niet gedurende het hele spel dezelfde moeilijkheid houdt. Wanneer de speler langer overleeft en meer punten behaalt, kunnen bijvoorbeeld de ballen sneller gaan bewegen.
 
-*
+Dit is verwerkt in **user story 12**.
 
 ---
 
 # Peer feedback
 
-De user stories worden door een medestudent gecontroleerd aan de hand van de checklist uit de opdracht.
+Tijdens het ontwikkelen van mijn project verzamel ik feedback van anderen. Deze feedback gebruik ik om mijn game en user stories te verbeteren.
 
-### Checklist
-
-* [ ] Er zijn minimaal 10 user stories.
-* [ ] Alle user stories zijn geschreven in het format **"Als … wil ik … zodat …"**.
-* [ ] Elke user story is klein genoeg om in een paar uur te bouwen en te testen.
-* [ ] Elke user story heeft minimaal 2 acceptatiecriteria.
-* [ ] De user stories zijn onafhankelijk genoeg om afzonderlijk te kunnen worden gebouwd en getest.
-* [ ] De user stories staan in een logische volgorde.
-* [ ] Elke user story komt terug in de gemaakte schets.
-* [ ] Geen enkele user story beschrijft meerdere dingen tegelijk.
-
-**Naam medestudent:**
+### Feedback 1
 
 **Datum:**
+01-10-2026
 
-**Opmerkingen/feedback:**
+**Van:**
+Akshay
 
-**Screenshot van de ingevulde checklist:**
+**Feedback:**
+
+* [x] Feedback ontvangen.
+* [ ] Feedback verwerkt.
+
+
+Om het spel interactief te maken maak gebruik van background muziek bij verschillende interacties Death, movement en highscore
+### Feedback 2
+
+**Datum:**
+01-10-2026
+
+**Van:**
+Akshay
+
+**Feedback:**
+
+* [x] Feedback ontvangen.
+* [ ] Feedback verwerkt.
+
+### Verwerkte feedback
+
+Na het ontvangen van feedback beschrijf ik hier welke aanpassingen ik daadwerkelijk in mijn project heb gedaan.
+
+---
+
+# Schetsen
+
+Hier voeg ik mijn schetsen toe van de verschillende schermen en onderdelen van de game.
+
+## Startmenu
+
+*Hier komt de schets van het startmenu.*
+
+* [ ] Schets gemaakt.
+* [ ] Schets toegevoegd aan het document.
+
+## Gameplay
+
+*Hier komt de schets van het gameplay-scherm.*
+
+* [ ] Schets gemaakt.
+* [ ] Schets toegevoegd aan het document.
+
+## Game over
+
+*Hier komt de schets van het game-over scherm.*
+
+* [ ] Schets gemaakt.
+* [ ] Schets toegevoegd aan het document.
+
+## Extra onderdelen
+
+*Hier komen eventuele schetsen van nieuwe onderdelen, zoals health power-ups en de moeilijkheidsopbouw.*
+
+* [ ] Schets gemaakt.
+* [ ] Schets toegevoegd aan het document.
