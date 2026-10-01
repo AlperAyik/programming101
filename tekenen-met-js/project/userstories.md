@@ -29,7 +29,7 @@ Ik gebruik drie prioriteiten voor mijn user stories:
 ### Acceptatiecriteria
 
 * [x] Het canvas is 640x480 pixels.
-* [x] Het canvas heeft een vaste achtergrondkleur.
+* [x] Het canvas heeft een achtergrond.
 * [x] De game wordt binnen het canvas weergegeven.
 
 ---

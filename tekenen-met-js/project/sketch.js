@@ -4,6 +4,8 @@ let amount = 20;
 let playing = false;
 let score = 0;
 let pause = false;
+let lives = 3;
+const audio = document.querySelector('audio');
 
 buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -20,13 +22,12 @@ function setup() {
 }
 
 function draw() {
-    
-
     if (playing) {
         if (pause) {
             pauzeTekst();
         } else {
             drawBackground();
+            livesText();
             fallingballs();
             movePlayer();
             checkCollision();
@@ -40,6 +41,12 @@ function draw() {
     if (score > highScore * 60) {
         localStorage.setItem('highscore', Math.floor(score / 60));
     }
+}
+
+function playAudio(curr) {
+    audio.src = curr;
+    audio.loop = true;
+    audio.play()
 }
 
 function gameDifficulty(diff) {
@@ -67,37 +74,53 @@ function drawBackground() {
 
 function createBalls() {
     for (let i = 0; i < amount; i++) {
+        let gres = random(70, 130); 
+        
+        let kraters = [
+            { ox: random(-10, 10), oy: random(-10, 10), grootte: random(6, 15) },
+            { ox: random(-15, 15), oy: random(-15, 15), grootte: random(5, 12) },
+            { ox: random(-12, 12), oy: random(-12, 12), grootte: random(4, 10) }
+        ];
+
         balls.push({
             x: random(5, width - 10),
             y: random(0, 0),
             vx: random(0, 3),
             vy: random(0.5, 1.5),
             diameter: random(30, 80),
-            color1: random(0, 255),
-            color2: random(0, 255),
-            color3: random(0, 255),
-        })
+            color1: gres,
+            color2: gres * 0.9,
+            color3: gres * 0.8,
+            kraters: kraters
+        });
     }
 }
 
+
 function fallingballs() {
     for (let ball of balls) {
-        const { x, y, vx, vy, diameter, color1, color2, color3 } = ball;
-
-        let radius = diameter / 2;
+        let radius = ball.diameter / 2;
 
         if (ball.y + radius > height + radius + 10) {
-            ball.y = -vy;
+            ball.y = -radius;
             ball.x = random(radius, width - radius);
             ball.diameter = random(30, 80);
         }
 
-        ball.y += vy;
+        ball.y += ball.vy;
 
-        fill(color1, color2, color3);
-        circle(x, y, diameter);
+        noStroke();
+        fill(ball.color1, ball.color2, ball.color3);
+        circle(ball.x, ball.y, ball.diameter);
+
+        fill(ball.color1 * 0.5, ball.color2 * 0.5, ball.color3 * 0.5); 
+        
+        for (let krater of ball.kraters) {
+            circle(ball.x + krater.ox, ball.y + krater.oy, krater.grootte);
+        }
     }
 }
+
 
 function checkCollision() {
     for (let ball of balls) {
@@ -112,7 +135,16 @@ function checkCollision() {
         let distance = sqrt(distanceX * distanceX + distanceY * distanceY);
 
         if (distance < radius) {
-            gameOver();
+            if (lives > 0) {
+                lives--
+            } else {
+                gameOver();
+                if(score > highScore) {
+                    playAudio('./assets/audio/highScore.mp3');
+                } else {
+                    playAudio('./assets/audio/Game Over.mp3')
+                } 
+            }
         }
     }
 }
@@ -128,12 +160,19 @@ function movePlayer() {
 function startMenu() {
     fill(255, 255, 255);
     textSize(16);
+    textAlign(CENTER, CENTER);
+    text(`Dubbel klik om te starten`, width / 2, height / 2);
+}
+
+function livesText() {
+    fill(255, 255, 255);
+    textSize(16);
     textAlign(LEFT, TOP);
-    text(`Dubbel klik om te starten`, 10, 20);
+    text(`Lives: ${lives}`, 10, 20);
 }
 
 function gameOver() {
-    background(125, 150, 175);
+    drawBackground();
     playing = false;
 
     fill(255, 255, 255);
@@ -150,7 +189,7 @@ function gameOver() {
 function resetGame() {
     balls.length = [];
     score = 0;
-    levens = 3;
+    lives = 3;
     playing = false;
     console.log(playing)
 }
@@ -187,6 +226,9 @@ function doubleClicked() {
         resetGame();
         createBalls();
         playing = true;
+
+        playAudio('./assets/audio/playingSound1.mp3');
+
         loop();
     }
 }
