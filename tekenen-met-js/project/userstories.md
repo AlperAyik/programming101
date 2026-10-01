@@ -102,7 +102,7 @@ Ik gebruik drie prioriteiten voor mijn user stories:
 * [ ] De speler begint met een vast aantal levens.
 * [ ] Wanneer de speler een bal raakt, wordt er één leven afgetrokken.
 * [x] De resterende levens worden weergegeven.
-* [ ] Wanneer alle levens op zijn, eindigt de game.
+* [x] Wanneer alle levens op zijn, eindigt de game.
 * [ ] De speler kan tijdens één botsing niet meerdere levens tegelijk verliezen.
 
 ---
@@ -159,10 +159,10 @@ Ik gebruik drie prioriteiten voor mijn user stories:
 
 ### Acceptatiecriteria
 
-* [ ] Er wordt uitgelegd hoe de speler wordt bestuurd.
-* [ ] Er wordt uitgelegd wat de speler moet ontwijken.
-* [ ] Er wordt uitgelegd hoe de score en levens werken.
-* [ ] De uitleg is zichtbaar voordat of tijdens het starten van de game.
+* [x] Er wordt uitgelegd hoe de speler wordt bestuurd.
+* [x] Er wordt uitgelegd wat de speler moet ontwijken.
+* [x] Er wordt uitgelegd hoe de score en levens werken.
+* [x] De uitleg is zichtbaar voordat of tijdens het starten van de game.
 
 ---
 
@@ -247,10 +247,11 @@ Akshay
 **Feedback:**
 
 * [x] Feedback ontvangen.
-* [ ] Feedback verwerkt.
+* [x] Feedback verwerkt.
 
 
 Om het spel interactief te maken maak gebruik van background muziek bij verschillende interacties Death, movement en highscore
+
 ### Feedback 2
 
 **Datum:**
@@ -262,11 +263,15 @@ Akshay
 **Feedback:**
 
 * [x] Feedback ontvangen.
-* [ ] Feedback verwerkt.
+* [x] Feedback verwerkt.
+
+Maak een leuke background animation
 
 ### Verwerkte feedback
 
 Na het ontvangen van feedback beschrijf ik hier welke aanpassingen ik daadwerkelijk in mijn project heb gedaan.
+
+Ik heb beide feedback punten verwerkt in mijn project zo ziet het spel een stuk leuker uit ziet, ik heb een soort space background die beweegt toegepast en ik heb leuke background muziek toegevoegd tijdens het spelen, highscore en gameover
 
 ---
 
@@ -278,22 +283,22 @@ Hier voeg ik mijn schetsen toe van de verschillende schermen en onderdelen van d
 
 *Hier komt de schets van het startmenu.*
 
-* [ ] Schets gemaakt.
-* [ ] Schets toegevoegd aan het document.
+* [x] Schets gemaakt.
+* [x] Schets toegevoegd aan het document.
 
 ## Gameplay
 
 *Hier komt de schets van het gameplay-scherm.*
 
-* [ ] Schets gemaakt.
-* [ ] Schets toegevoegd aan het document.
+* [x] Schets gemaakt.
+* [x] Schets toegevoegd aan het document.
 
 ## Game over
 
 *Hier komt de schets van het game-over scherm.*
 
-* [ ] Schets gemaakt.
-* [ ] Schets toegevoegd aan het document.
+* [x] Schets gemaakt.
+* [x] Schets toegevoegd aan het document.
 
 ## Extra onderdelen
 
