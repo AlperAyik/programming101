@@ -1,18 +1,21 @@
 const balls = [];
 const buttons = document.querySelectorAll('button');
 const audio = document.querySelector('audio');
-let shipX;
-let shipY;
+let shipX = 310;
+let shipY = 440;
 let amount = 20;
 let playing = false;
 let score = 0;
 let pause = false;
 let lives = 3;
 let num = 2;
+let difficulty = 'Makkelijk';
+let difficultyText = document.getElementById('current-difficulty');
 
 buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
         gameDifficulty(btn.textContent);
+        difficultyText.textContent = btn.textContent;
     })
 })
 
@@ -32,7 +35,7 @@ function draw() {
         if (pause) {
             pauzeTekst();
         } else {
-            gameLevel();
+            // gameLevel();
             drawBackground();
             livesText();
             fallingballs();
@@ -59,11 +62,15 @@ function playAudio(curr) {
 function gameDifficulty(diff) {
     if (diff === 'Makkelijk') {
         amount = 20;
+        difficulty = 'Makkelijk';
     } else if (diff === 'Moeilijk') {
         amount = 30;
+        difficulty = 'Moeilijk';
     } else if (diff === 'Extra moeilijk') {
         amount = 40;
+        difficulty = 'Extra moeilijk';
     }
+    console.log(difficulty);
 }
 
 function drawBackground() {
@@ -128,15 +135,17 @@ function fallingballs() {
     }
 }
 
-function gameLevel() {
-    // if (score / 60 > 10) roep gameDifficulty aan met een hogere moeilijkheidsgraad
-    // en haal laat de speler door de hele canvas bewegen en laat ballen van meedere kanten vallen
+// maak een functie die checkt als game moeilijker is als dat zo is laat de speler met arrow keys spelen
 
-    if(score / 60 > 10 && score / 60 < 10.05) {
-        gameDifficulty('Moeilijk');
-        createBalls();
-    }
-}
+// function gameLevel() {
+//     // if (score / 60 > 10) roep gameDifficulty aan met een hogere moeilijkheidsgraad
+//     // en haal laat de speler door de hele canvas bewegen en laat ballen van meedere kanten vallen
+
+//     if (score / 60 > 10 && score / 60 < 10.05) {
+//         gameDifficulty('Moeilijk');
+//         createBalls();
+//     }
+// }
 
 
 function checkCollision() {
@@ -168,29 +177,82 @@ function checkCollision() {
 }
 
 function movePlayer() {
-    shipX = constrain(mouseX, 0, width - 20);
+    if (difficulty === 'Makkelijk') {
+        shipX = constrain(mouseX, 0, width - 20);
+        shipY = height - 40;
+    } else {
+        console.log(difficulty);
+        const speed = 5;
 
-    shipY = height - 40;
+        if (keyIsDown(LEFT_ARROW)) {
+            shipX -= speed;
+        }
 
+        if (keyIsDown(RIGHT_ARROW)) {
+            shipX += speed;
+        }
+
+        if (keyIsDown(UP_ARROW)) {
+            shipY -= speed;
+        }
+
+        if (keyIsDown(DOWN_ARROW)) {
+            shipY += speed;
+        }
+
+        // Binnen het canvas blijven
+        shipX = constrain(shipX, 0, width - 20);
+        shipY = constrain(shipY, 40, height - 20);
+    }
     noStroke();
-
 
     if (num % 2 === 0) {
         fill(255, 100, 0);
         num = 3;
     } else {
-        fill(255, 255, 100)
+        fill(255, 255, 100);
         num = 2;
     }
 
-    triangle(shipX, shipY, shipX + 7, shipY, shipX + 3.5, shipY + 15);
-    triangle(shipX + 6, shipY, shipX + 14, shipY, shipX + 10, shipY + 20);
-    triangle(shipX + 13, shipY, shipX + 20, shipY, shipX + 16.5, shipY + 15);
+    triangle(
+        shipX,
+        shipY,
+        shipX + 7,
+        shipY,
+        shipX + 3.5,
+        shipY + 15
+    );
+
+    triangle(
+        shipX + 6,
+        shipY,
+        shipX + 14,
+        shipY,
+        shipX + 10,
+        shipY + 20
+    );
+
+    triangle(
+        shipX + 13,
+        shipY,
+        shipX + 20,
+        shipY,
+        shipX + 16.5,
+        shipY + 15
+    );
 
     stroke(0);
 
     fill(0, 255, 0);
-    triangle(shipX, shipY - 20, shipX + 20, shipY - 20, shipX + 10, shipY - 40);
+
+    triangle(
+        shipX,
+        shipY - 20,
+        shipX + 20,
+        shipY - 20,
+        shipX + 10,
+        shipY - 40
+    );
 
     fill(255, 0, 0);
     square(shipX, shipY - 20, 20);
@@ -209,7 +271,7 @@ function livesText() {
     fill(255, 255, 255);
     textSize(16);
     textAlign(LEFT, TOP);
-    text(`Lives: ${lives}`, 10, 20);
+    text(`Levens: ${lives}`, 10, 20);
 }
 
 function gameOver() {
