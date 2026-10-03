@@ -26,6 +26,9 @@ function setup() {
 
 function draw() {
     if (playing) {
+        buttons.forEach((btn) => {
+            btn.style.display = 'none';
+        })
         if (pause) {
             pauzeTekst();
         } else {
@@ -124,6 +127,11 @@ function fallingballs() {
     }
 }
 
+function gameLevel() {
+    // if (score / 60 > 10) roep gameDifficulty aan met een hogere moeilijkheidsgraad
+    // en haal laat de speler door de hele canvas bewegen en laat ballen van meedere kanten vallen
+}
+
 
 function checkCollision() {
     for (let ball of balls) {
@@ -143,12 +151,11 @@ function checkCollision() {
                 ball.x = random(radius, width - radius);
                 lives--
             } else {
+                buttons.forEach((btn) => {
+                    btn.style.display = 'block';
+                })
                 gameOver();
-                if (score > highScore) {
-                    playAudio('./assets/audio/highScore.mp3');
-                } else {
-                    playAudio('./assets/audio/Game Over.mp3')
-                }
+                playAudio('./assets/audio/Game Over.mp3')
             }
         }
     }
@@ -160,10 +167,10 @@ function movePlayer() {
     shipY = height - 40;
 
     noStroke();
-    
 
-    if(num % 2 === 0) {
-        fill(255, 100, 0); 
+
+    if (num % 2 === 0) {
+        fill(255, 100, 0);
         num = 3;
     } else {
         fill(255, 255, 100)
@@ -208,7 +215,6 @@ function gameOver() {
     textAlign(CENTER, CENTER);
     text(`Game Over!`, width / 2, height / 2);
     text(`Dubbel klik om opnieuw te starten`, width / 2, height / 2 + 30);
-    // text(`Highscore: ${highScore}`, width / 2, height / 2 + 60);
 
     noLoop();
 }
@@ -217,8 +223,6 @@ function resetGame() {
     balls.length = 0;
     score = 0;
     lives = 3;
-    playing = false;
-    console.log(playing)
 }
 
 function scoreTracker() {

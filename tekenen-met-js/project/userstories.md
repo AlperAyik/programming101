@@ -267,12 +267,28 @@ Akshay
 
 Maak een leuke background animation
 
+### Feedback 2
+
+**Datum:**
+01-10-2026
+
+**Van:**
+Akshay
+
+**Feedback:**
+
+* [x] Feedback ontvangen.
+* [x] Feedback verwerkt.
+
+Je hebt nu als speler een circle maak er iets leuks van bijv een space ship
+
 ### Verwerkte feedback
 
 Na het ontvangen van feedback beschrijf ik hier welke aanpassingen ik daadwerkelijk in mijn project heb gedaan.
 
 Ik heb beide feedback punten verwerkt in mijn project zo ziet het spel een stuk leuker uit ziet, ik heb een soort space background die beweegt toegepast en ik heb leuke background muziek toegevoegd tijdens het spelen, highscore en gameover
 
+Op **01-10-2026** heb ik voor de speler een spaceship animation gemaakt zodat het echt voelt als een space game inplaats van een paar ballen
 ---
 
 # Schetsen
