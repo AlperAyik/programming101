@@ -1,13 +1,141 @@
 * {
-    margin: 0;
-    padding: 0;
+    margin: 1;
+    padding: 1;
     box-sizing: border-box;
+    color: #FFFFFF;
 }
 
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    background: #f0f0f0;
+    background: rgb(10, 15, 35);
+}
+
+.game-info {
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+/* Titel */
+.game-info > div:first-child {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 10px 0 25px;
+    background: transparent;
+    border: none;
+}
+
+h1 {
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.game-info > div:first-child p {
+    color: #9fb2cc;
+    font-size: 16px;
+}
+
+/* Content blokken */
+.game-info > div:not(:first-child) {
+    background: #0b1d3a;
+    border: 1px solid #193b68;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+h2 {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    color: #ffffff;
+}
+
+p,
+li {
+    color: #b8c8dc;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+ul {
+    padding-left: 19px;
+}
+
+li {
+    margin-bottom: 7px;
+}
+
+strong {
+    color: #eaf2ff;
+}
+
+/* Moeilijkheid kiezen */
+.game-info > div:last-child {
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
+.game-info > div:last-child p {
+    margin-bottom: 15px;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    border: 1px solid #2b6098;
+    background: #12325b;
+    color: #ffffff;
+
+    padding: 10px 20px;
+    margin: 4px;
+
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    background: #1a477c;
+    border-color: #3d7fbd;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* Mobiel */
+@media (max-width: 700px) {
+    .game-info {
+        grid-template-columns: 1fr;
+    }
+
+    .game-info > div:first-child,
+    .game-info > div:last-child {
+        grid-column: auto;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    button {
+        width: 100%;
+        margin: 4px 0;
+    }
 }

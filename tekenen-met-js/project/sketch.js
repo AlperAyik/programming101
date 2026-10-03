@@ -32,6 +32,7 @@ function draw() {
         if (pause) {
             pauzeTekst();
         } else {
+            gameLevel();
             drawBackground();
             livesText();
             fallingballs();
@@ -130,6 +131,11 @@ function fallingballs() {
 function gameLevel() {
     // if (score / 60 > 10) roep gameDifficulty aan met een hogere moeilijkheidsgraad
     // en haal laat de speler door de hele canvas bewegen en laat ballen van meedere kanten vallen
+
+    if(score / 60 > 10 && score / 60 < 10.05) {
+        gameDifficulty('Moeilijk');
+        createBalls();
+    }
 }
 
 

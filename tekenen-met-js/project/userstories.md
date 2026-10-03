@@ -99,11 +99,11 @@ Ik gebruik drie prioriteiten voor mijn user stories:
 
 ### Acceptatiecriteria
 
-* [ ] De speler begint met een vast aantal levens.
-* [ ] Wanneer de speler een bal raakt, wordt er één leven afgetrokken.
+* [x] De speler begint met een vast aantal levens.
+* [x] Wanneer de speler een bal raakt, wordt er één leven afgetrokken.
 * [x] De resterende levens worden weergegeven.
 * [x] Wanneer alle levens op zijn, eindigt de game.
-* [ ] De speler kan tijdens één botsing niet meerdere levens tegelijk verliezen.
+* [x] De speler kan tijdens één botsing niet meerdere levens tegelijk verliezen.
 
 ---
 
