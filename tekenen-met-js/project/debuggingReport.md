@@ -148,9 +148,6 @@ Ik heb de code gecontroleerd en aangepast zodat de bal met de juiste `diameter` 
 
 Door `console.log()` te gebruiken kon ik de waardes tijdens het uitvoeren van het programma controleren en de oorzaak van het probleem vinden.
 
-# Report 7
-Ik had eerst dat de moeilijkheids niveau buttons constant te zien waren maar dat heb ik veranderd naar alleen begin van het spel start menu en als het game over is 
-
 ---
 
 # Coachgesprek

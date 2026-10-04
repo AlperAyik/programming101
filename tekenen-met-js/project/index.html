@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space invaders</title>
+    <title>Space dodger</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5.sound@0.3.0/dist/p5.sound.min.js"></script>
@@ -12,11 +12,14 @@
 
 <body>
     <audio src=""></audio>
+
     <section class="game-info">
+
         <div>
-            <h1>Space Invaders</h1>
+            <h1>Space Dodger</h1>
             <p>Vermijd de vallende ballen en probeer zo lang mogelijk te overleven!</p>
         </div>
+
         <div>
             <h2>Game Regels</h2>
             <ul>
@@ -26,34 +29,59 @@
                 <li>Ontwijk de vallende ballen om levens te behouden.</li>
                 <li>Bij 50 punten versnellen de meteorieten met 1.5x.</li>
                 <li>Bij 100 punten versnellen de meteorieten 2.5x zo snel.</li>
+                <li>Druk op de <strong>spatiebalk</strong> om het spel te pauzeren.</li>
+                <li>Je score wordt tijdens het spelen bijgehouden.</li>
+                <li>Je hoogste score wordt opgeslagen als <strong>highscore</strong>.</li>
+                <li>Dubbelklik om het spel te starten.</li>
+                <li>Dubbelklik tijdens het spelen om terug te gaan naar het startmenu.</li>
             </ul>
         </div>
 
         <div>
             <h2>Moeilijkheidsgraden</h2>
+
             <p>
                 Je kunt kiezen uit drie moeilijkheidsgraden:
             </p>
+
             <ul>
-                <li><strong>Makkelijk:</strong> de ballen bewegen langzaam, er zijn minder ballen en je bestuurt de
-                    speler met de muis.</li>
-                <li><strong>Moeilijk:</strong> de ballen bewegen sneller, er komen meer ballen en je bestuurt de speler
-                    met de pijltjestoetsen.</li>
-                <li><strong>Extra moeilijk:</strong> de ballen bewegen nog sneller, er verschijnen nog meer ballen en je
-                    bestuurt de speler met de pijltjestoetsen.</li>
+                <li>
+                    <strong>Makkelijk:</strong>
+                    de ballen bewegen langzaam, er zijn minder ballen
+                    en je bestuurt de speler met de muis.
+                </li>
+
+                <li>
+                    <strong>Moeilijk:</strong>
+                    de ballen bewegen sneller, er komen meer ballen
+                    en je bestuurt de speler met de pijltjestoetsen.
+                </li>
+
+                <li>
+                    <strong>Extra moeilijk:</strong>
+                    de ballen bewegen nog sneller, er verschijnen nog meer ballen
+                    en je bestuurt de speler met de pijltjestoetsen.
+                </li>
             </ul>
         </div>
 
         <div>
             <h2>Moeilijkheid kiezen</h2>
-            <span class="difficulty">Huidige moeilijkheidsgraad: <span id="current-difficulty">Makkelijk</span></span>
+
+            <span class="difficulty">
+                Huidige moeilijkheidsgraad:
+                <span id="current-difficulty">Makkelijk</span>
+            </span>
+
             <div class="buttons">
                 <button>Makkelijk</button>
                 <button>Moeilijk</button>
                 <button>Extra moeilijk</button>
             </div>
         </div>
+
     </section>
+
     <script src="sketch.js"></script>
 </body>
 

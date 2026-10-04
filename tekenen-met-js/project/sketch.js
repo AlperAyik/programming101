@@ -1,77 +1,85 @@
 const balls = [];
 const buttons = document.querySelectorAll('button');
 const audio = document.querySelector('audio');
+
+const CANVAS_WIDTH = 640;
+const CANVAS_HEIGHT = 480;
+const PLAYER_SIZE = 20;
+const PLAYER_SPEED = 5;
+const STARTING_LIVES = 3;
+const EASY_BALL_AMOUNT = 20;
+const EXTRA_HARD_BALL_AMOUNT = 25;
+const SCORE_INTERVAL = 60;
+
 let shipX = 310;
 let shipY = 440;
-let amount = 20;
+let amount = EASY_BALL_AMOUNT;
 let playing = false;
 let score = 0;
+let powerUpActive = false;
 let pause = false;
-let lives = 3;
+let lives = STARTING_LIVES;
 let num = 2;
 let difficulty = 'Makkelijk';
 let difficultyText = document.getElementById('current-difficulty');
+let highScore = localStorage.getItem('highscore') || 0;
 
-buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-        gameDifficulty(btn.textContent);
-        difficultyText.textContent = btn.textContent;
-    })
-})
-
-const highScore = localStorage.getItem('highscore') || 0;
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        setDifficulty(button.textContent);
+        difficultyText.textContent = button.textContent;
+    });
+});
 
 function setup() {
-    createCanvas(640, 480);
+    createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
     drawBackground();
     startMenu();
 }
 
 function draw() {
     if (playing) {
-        buttons.forEach((btn) => {
-            btn.style.display = 'none';
-        })
+        buttons.forEach((button) => {
+            button.style.display = 'none';
+        });
+
         if (pause) {
-            pauzeTekst();
+            pauseText();
         } else {
-            // gameLevel();
-            fasterBalls();
+            updateBallSpeed();
             drawBackground();
-            livesText();
-            fallingballs();
+            drawLives();
+            drawFallingBalls();
             movePlayer();
             checkCollision();
-            scoreTracker();
+            drawScore();
+
             score++;
         }
     } else {
         startMenu();
     }
 
-    if (score / 60 > highScore) {
-        localStorage.setItem('highscore', Math.floor(score / 60));
-    }
+    updateHighScore();
 }
 
-function playAudio(curr) {
-    audio.src = curr;
+function playAudio(source) {
+    audio.src = source;
     audio.loop = true;
     audio.play();
 }
 
-function gameDifficulty(diff) {
-    if (diff === 'Makkelijk') {
-        amount = 20;
+function setDifficulty(selectedDifficulty) {
+    if (selectedDifficulty === 'Makkelijk') {
+        amount = EASY_BALL_AMOUNT;
         difficulty = 'Makkelijk';
-    } else if (diff === 'Moeilijk') {
-        amount = 30;
+    } else if (selectedDifficulty === 'Moeilijk') {
+        amount = EASY_BALL_AMOUNT;
         difficulty = 'Moeilijk';
-    } else if (diff === 'Extra moeilijk') {
-        amount = 40;
+    } else if (selectedDifficulty === 'Extra moeilijk') {
+        amount = EXTRA_HARD_BALL_AMOUNT;
         difficulty = 'Extra moeilijk';
     }
-    console.log(difficulty);
 }
 
 function drawBackground() {
@@ -89,48 +97,74 @@ function drawBackground() {
 
 function createBalls() {
     for (let i = 0; i < amount; i++) {
-        let gres = random(70, 130);
+        let grayValue = random(70, 130);
 
-        let kraters = [
-            { ox: random(-10, 10), oy: random(-10, 10), grootte: random(6, 15) },
-            { ox: random(-15, 15), oy: random(-15, 15), grootte: random(5, 12) },
-            { ox: random(-12, 12), oy: random(-12, 12), grootte: random(4, 10) }
+        let craters = [
+            {
+                ox: random(-10, 10),
+                oy: random(-10, 10),
+                size: random(6, 15)
+            },
+            {
+                ox: random(-15, 15),
+                oy: random(-15, 15),
+                size: random(5, 12)
+            },
+            {
+                ox: random(-12, 12),
+                oy: random(-12, 12),
+                size: random(4, 10)
+            }
         ];
 
-        const speedMultiplier = difficulty === 'Makkelijk' ? 1 : difficulty === 'Moeilijk' ? 1.5 : 2;
+        const speedMultiplier =
+            difficulty === 'Makkelijk'
+                ? 1
+                : difficulty === 'Moeilijk'
+                    ? 1.5
+                    : 2;
 
         balls.push({
             x: random(5, width - 10),
-            y: random(0, height - 30),
+            y: random(0, height / 2),
             vx: random(0, 3),
             vy: random(0.5, 1.5) * speedMultiplier,
             diameter: random(30, 80),
-            color1: gres,
-            color2: gres * 0.9,
-            color3: gres * 0.8,
-            kraters: kraters
+            color1: grayValue,
+            color2: grayValue * 0.9,
+            color3: grayValue * 0.8,
+            craters: craters
         });
     }
 }
 
-function fasterBalls() {
+function updateBallSpeed() {
     for (let ball of balls) {
-        if (score / 60 > 100 && difficulty === 'Makkelijk') {
+        if (score / SCORE_INTERVAL > 100 && difficulty === 'Makkelijk') {
             ball.vy = 2.5;
-        } else if (score / 60 > 50 && difficulty === 'Moeilijk') {
+            score += 0.5;
+        } else if (
+            score / SCORE_INTERVAL > 50 &&
+            difficulty === 'Makkelijk'
+        ) {
             ball.vy = 1.5;
+            score += 0.3;
         }
 
-        if (score / 60 > 100 && difficulty === 'Moeilijk') {
+        if (score / SCORE_INTERVAL > 100 && difficulty === 'Moeilijk') {
             ball.vy = 1.5;
-        } else if (score / 60 > 100 && difficulty === 'Extra moeilijk') {
+            score += 0.5;
+        } else if (
+            score / SCORE_INTERVAL > 100 &&
+            difficulty === 'Extra moeilijk'
+        ) {
             ball.vy = 1.2;
+            score += 0.5;
         }
     }
 }
 
-
-function fallingballs() {
+function drawFallingBalls() {
     for (let ball of balls) {
         let radius = ball.diameter / 2;
 
@@ -141,42 +175,69 @@ function fallingballs() {
         }
 
         ball.y += ball.vy;
-        // miss ballen sneller maken bij minder ballen en ballen minder snel maken bij meer ballen
+
         noStroke();
         fill(ball.color1, ball.color2, ball.color3);
         circle(ball.x, ball.y, ball.diameter);
 
-        fill(ball.color1 * 0.5, ball.color2 * 0.5, ball.color3 * 0.5);
+        fill(
+            ball.color1 * 0.5,
+            ball.color2 * 0.5,
+            ball.color3 * 0.5
+        );
 
-        for (let krater of ball.kraters) {
-            circle(ball.x + krater.ox, ball.y + krater.oy, krater.grootte);
+        for (let crater of ball.craters) {
+            drawCrater(
+                ball.x + crater.ox,
+                ball.y + crater.oy,
+                crater.size
+            );
         }
     }
+}
+
+function drawCrater(x, y, size) {
+    circle(x, y, size);
 }
 
 function checkCollision() {
     for (let ball of balls) {
         let radius = ball.diameter / 2;
 
-        let closestX = constrain(ball.x, shipX, shipX + 20);
-        let closestY = constrain(ball.y, height - 20, shipY);
+        let closestX = constrain(
+            ball.x,
+            shipX,
+            shipX + PLAYER_SIZE
+        );
+
+        let closestY = constrain(
+            ball.y,
+            height - PLAYER_SIZE,
+            shipY
+        );
 
         let distanceX = ball.x - closestX;
         let distanceY = ball.y - closestY;
 
-        let distance = sqrt(distanceX * distanceX + distanceY * distanceY);
+        let distance = sqrt(
+            distanceX * distanceX +
+            distanceY * distanceY
+        );
 
         if (distance < radius) {
             if (lives > 0) {
-                ball.y = -radius;
-                ball.x = random(radius, width - radius);
-                lives--
+                if (powerUpActive === false) {
+                    ball.y = -radius;
+                    ball.x = random(radius, width - radius);
+                    lives--;
+                }
             } else {
-                buttons.forEach((btn) => {
-                    btn.style.display = 'block';
-                })
+                buttons.forEach((button) => {
+                    button.style.display = 'block';
+                });
+
                 gameOver();
-                playAudio('./assets/audio/Game Over.mp3')
+                playAudio('./assets/audio/Game Over.mp3');
             }
         }
     }
@@ -184,32 +245,42 @@ function checkCollision() {
 
 function movePlayer() {
     if (difficulty === 'Makkelijk') {
-        shipX = constrain(mouseX, 0, width - 20);
+        shipX = constrain(mouseX, 0, width - PLAYER_SIZE);
         shipY = height - 40;
     } else {
-        console.log(difficulty);
-        const speed = 5;
-
         if (keyIsDown(LEFT_ARROW)) {
-            shipX -= speed;
+            shipX -= PLAYER_SPEED;
         }
 
         if (keyIsDown(RIGHT_ARROW)) {
-            shipX += speed;
+            shipX += PLAYER_SPEED;
         }
 
         if (keyIsDown(UP_ARROW)) {
-            shipY -= speed;
+            shipY -= PLAYER_SPEED;
         }
 
         if (keyIsDown(DOWN_ARROW)) {
-            shipY += speed;
+            shipY += PLAYER_SPEED;
         }
 
-        // Binnen het canvas blijven
-        shipX = constrain(shipX, 0, width - 20);
-        shipY = constrain(shipY, 40, height - 20);
+        shipX = constrain(
+            shipX,
+            0,
+            width - PLAYER_SIZE
+        );
+
+        shipY = constrain(
+            shipY,
+            40,
+            height - PLAYER_SIZE
+        );
     }
+
+    drawShip(shipX, shipY);
+}
+
+function drawShip(x, y) {
     noStroke();
 
     if (num % 2 === 0) {
@@ -221,30 +292,30 @@ function movePlayer() {
     }
 
     triangle(
-        shipX,
-        shipY,
-        shipX + 7,
-        shipY,
-        shipX + 3.5,
-        shipY + 15
+        x,
+        y,
+        x + 7,
+        y,
+        x + 3.5,
+        y + 15
     );
 
     triangle(
-        shipX + 6,
-        shipY,
-        shipX + 14,
-        shipY,
-        shipX + 10,
-        shipY + 20
+        x + 6,
+        y,
+        x + 14,
+        y,
+        x + 10,
+        y + 20
     );
 
     triangle(
-        shipX + 13,
-        shipY,
-        shipX + 20,
-        shipY,
-        shipX + 16.5,
-        shipY + 15
+        x + 13,
+        y,
+        x + 20,
+        y,
+        x + 16.5,
+        y + 15
     );
 
     stroke(0);
@@ -252,65 +323,125 @@ function movePlayer() {
     fill(0, 255, 0);
 
     triangle(
-        shipX,
-        shipY - 20,
-        shipX + 20,
-        shipY - 20,
-        shipX + 10,
-        shipY - 40
+        x,
+        y - 20,
+        x + 20,
+        y - 20,
+        x + 10,
+        y - 40
     );
 
     fill(255, 0, 0);
-    square(shipX, shipY - 20, 20);
+    square(x, y - 20, PLAYER_SIZE);
 }
-
 
 function startMenu() {
-    fill(255, 255, 255);
-    textSize(16);
+    fill(255);
+    textSize(22);
     textAlign(CENTER, CENTER);
-    text(`Dubbel klik om te starten`, width / 2, height / 2);
-    text(`High score: ${highScore}`, width / 2, height / 2 + 30)
+
+    text(
+        'Welkom bij Space Dodger!',
+        width / 2,
+        height / 2 - 30
+    );
+
+    textSize(16);
+
+    text(
+        'Dubbel klik om te starten',
+        width / 2,
+        height / 2
+    );
+
+    text(
+        `High score: ${highScore}`,
+        width / 2,
+        height / 2 + 30
+    );
 }
 
-function livesText() {
-    fill(255, 255, 255);
+function drawLives() {
+    fill(255);
     textSize(16);
     textAlign(LEFT, TOP);
-    text(`Levens: ${lives}`, 10, 20);
+
+    text(
+        `Levens: ${lives}`,
+        10,
+        20
+    );
 }
 
 function gameOver() {
     drawBackground();
+
     playing = false;
 
-    fill(255, 255, 255);
+    fill(255);
     textSize(16);
     textAlign(CENTER, CENTER);
-    text(`Game Over!`, width / 2, height / 2);
-    text(`Dubbel klik om opnieuw te starten`, width / 2, height / 2 + 30);
+
+    text(
+        'Game Over!',
+        width / 2,
+        height / 2
+    );
+
+    text(
+        'Dubbel klik om opnieuw te starten',
+        width / 2,
+        height / 2 + 30
+    );
 
     noLoop();
 }
 
 function resetGame() {
+    drawBackground();
+
     balls.length = 0;
     score = 0;
-    lives = 3;
+    lives = STARTING_LIVES;
+    pause = false;
+
+    shipX = 310;
+    shipY = 440;
 }
 
-function scoreTracker() {
-    fill(255, 255, 255);
+function drawScore() {
+    fill(255);
     textSize(16);
     textAlign(RIGHT, TOP);
-    text(`Score: ${Math.floor(score / 60)}`, width - 10, 20);
+
+    text(
+        `Score: ${Math.floor(score / SCORE_INTERVAL)}`,
+        width - 10,
+        20
+    );
 }
 
-function pauzeTekst() {
-    fill(255, 255, 255);
+function pauseText() {
+    fill(255);
     textSize(16);
     textAlign(CENTER, CENTER);
-    text('Pauze', width / 2, height / 2)
+
+    text(
+        'Pauze',
+        width / 2,
+        height / 2
+    );
+}
+
+function updateHighScore() {
+    const currentScore = Math.floor(
+        score / SCORE_INTERVAL
+    );
+
+    if (currentScore > highScore) {
+        highScore = currentScore;
+        localStorage.setItem('highscore', highScore);
+    }
 }
 
 function doubleClicked() {
@@ -322,17 +453,30 @@ function doubleClicked() {
         playAudio('./assets/audio/playingSound1.mp3');
 
         loop();
+    } else {
+        resetGame();
+        playing = false;
+
+        audio.pause();
+
+        buttons.forEach((button) => {
+            button.style.display = 'block';
+        });
+
+        noLoop();
     }
 }
 
 function keyPressed() {
     if (keyCode === 32 && playing === true) {
         pause = !pause;
+
         if (pause) {
             audio.pause();
-            // paused time toevoegen
         } else {
-            playAudio('./assets/audio/playingSound1.mp3')
+            playAudio('./assets/audio/playingSound1.mp3');
         }
+
+        return false;
     }
 }

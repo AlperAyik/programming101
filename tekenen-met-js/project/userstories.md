@@ -195,17 +195,21 @@ Ik gebruik drie prioriteiten voor mijn user stories:
 
 ---
 
-## 13. Health power-up
+## 13. Power-up
 
 **Prioriteit:** Could have
 
-**Als speler wil ik tijdens het spelen een health power-up kunnen oppakken, zodat ik extra gezondheid of een extra leven kan krijgen.**
+**User story**
+
+Als speler wil ik tijdens het spelen een power-up kunnen oppakken, zodat ik tijdelijk immuun ben voor botsingen met meteorieten.
 
 ### Acceptatiecriteria
 
-* [ ] Er kunnen health power-ups tijdens het spelen verschijnen.
-* [ ] De speler kan een power-up oppakken.
-* [ ] Na het oppakken krijgt de speler extra gezondheid of een extra leven.
+* [ ] Tijdens het spelen kunnen er power-ups verschijnen.
+* [ ] De speler kan een power-up oppakken door ermee in aanraking te komen.
+* [ ] Na het oppakken wordt de speler voor een bepaalde tijd immuun voor botsingen.
+* [ ] Tijdens de immuniteit verliezen botsingen geen levens.
+* [ ] Na afloop van de bepaalde tijd vervalt de immuniteit.
 * [ ] De power-up verdwijnt nadat deze is opgepakt.
 
 ---
