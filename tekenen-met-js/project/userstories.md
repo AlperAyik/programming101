@@ -188,10 +188,10 @@ Ik gebruik drie prioriteiten voor mijn user stories:
 
 ### Acceptatiecriteria
 
-* [ ] De moeilijkheid verandert wanneer de speler een bepaald aantal punten behaalt.
-* [ ] De ballen kunnen bijvoorbeeld sneller gaan bewegen.
-* [ ] De moeilijkheid wordt stapsgewijs verhoogd.
-* [ ] De speler merkt tijdens het spelen dat de game moeilijker wordt.
+* [x] De moeilijkheid verandert wanneer de speler een bepaald aantal punten behaalt.
+* [x] De ballen gaan sneller bewegen.
+* [x] De moeilijkheid wordt stapsgewijs verhoogd.
+* [x] De speler merkt tijdens het spelen dat de game moeilijker wordt.
 
 ---
 

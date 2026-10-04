@@ -36,6 +36,7 @@ function draw() {
             pauzeTekst();
         } else {
             // gameLevel();
+            fasterBalls();
             drawBackground();
             livesText();
             fallingballs();
@@ -96,17 +97,35 @@ function createBalls() {
             { ox: random(-12, 12), oy: random(-12, 12), grootte: random(4, 10) }
         ];
 
+        const speedMultiplier = difficulty === 'Makkelijk' ? 1 : difficulty === 'Moeilijk' ? 1.5 : 2;
+
         balls.push({
             x: random(5, width - 10),
-            y: random(0, 0),
+            y: random(0, height - 30),
             vx: random(0, 3),
-            vy: random(0.5, 1.5),
+            vy: random(0.5, 1.5) * speedMultiplier,
             diameter: random(30, 80),
             color1: gres,
             color2: gres * 0.9,
             color3: gres * 0.8,
             kraters: kraters
         });
+    }
+}
+
+function fasterBalls() {
+    for (let ball of balls) {
+        if (score / 60 > 100 && difficulty === 'Makkelijk') {
+            ball.vy = 2.5;
+        } else if (score / 60 > 50 && difficulty === 'Moeilijk') {
+            ball.vy = 1.5;
+        }
+
+        if (score / 60 > 100 && difficulty === 'Moeilijk') {
+            ball.vy = 1.5;
+        } else if (score / 60 > 100 && difficulty === 'Extra moeilijk') {
+            ball.vy = 1.2;
+        }
     }
 }
 
@@ -122,7 +141,7 @@ function fallingballs() {
         }
 
         ball.y += ball.vy;
-
+        // miss ballen sneller maken bij minder ballen en ballen minder snel maken bij meer ballen
         noStroke();
         fill(ball.color1, ball.color2, ball.color3);
         circle(ball.x, ball.y, ball.diameter);
@@ -134,19 +153,6 @@ function fallingballs() {
         }
     }
 }
-
-// maak een functie die checkt als game moeilijker is als dat zo is laat de speler met arrow keys spelen
-
-// function gameLevel() {
-//     // if (score / 60 > 10) roep gameDifficulty aan met een hogere moeilijkheidsgraad
-//     // en haal laat de speler door de hele canvas bewegen en laat ballen van meedere kanten vallen
-
-//     if (score / 60 > 10 && score / 60 < 10.05) {
-//         gameDifficulty('Moeilijk');
-//         createBalls();
-//     }
-// }
-
 
 function checkCollision() {
     for (let ball of balls) {
