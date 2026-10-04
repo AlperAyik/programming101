@@ -148,6 +148,63 @@ Ik heb de code gecontroleerd en aangepast zodat de bal met de juiste `diameter` 
 
 Door `console.log()` te gebruiken kon ik de waardes tijdens het uitvoeren van het programma controleren en de oorzaak van het probleem vinden.
 
+# Report 7
+
+**Datum:** 04-10-2026
+
+**Opdracht:** p5.js – Tekenen met JavaScript – Project
+
+**Onderdeel:** Project / levelsysteem
+
+### Probleem
+
+Tijdens het testen van mijn levelsysteem kreeg ik een foutmelding in de console:
+
+`Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'open')`
+
+De foutmelding ontstond tijdens het uitvoeren van `drawBackground()`. Hierdoor kon mijn game niet goed starten.
+
+### Onderzoek
+
+Ik heb eerst gekeken naar de regel die in de foutmelding werd aangegeven. In `drawBackground()` gebruikte ik bijvoorbeeld:
+
+```js
+levels.level1.open
+```
+
+Daarna heb ik gecontroleerd hoe de variabele `levels` werd aangemaakt. Ik zag dat ik de levels uit `localStorage` haalde met:
+
+```js
+let levels = localStorage.getItem('levels') || LEVELS;
+```
+
+Ik realiseerde me dat `localStorage` gegevens als een string opslaat. Mijn `levels`-object werd eerder met `JSON.stringify()` opgeslagen, waardoor ik de opgeslagen gegevens bij het ophalen weer moest omzetten naar een JavaScript-object.
+
+### Oorzaak
+
+De oorzaak was dat ik `JSON.parse()` was vergeten bij het ophalen van de levels uit `localStorage`.
+
+De opgeslagen JSON-string werd daardoor niet automatisch teruggezet naar een JavaScript-object. Hierdoor kon ik `levels.level1.open` niet gebruiken en was `levels.level1` `undefined`.
+
+### Oplossing
+
+Ik heb de code aangepast naar:
+
+```js
+let levels = JSON.parse(localStorage.getItem('levels')) || LEVELS;
+```
+
+Met `JSON.parse()` wordt de opgeslagen JSON-string weer omgezet naar een JavaScript-object. Hierdoor kan ik de properties van `levels`, zoals `levels.level1.open` en `levels.level1.highScore`, weer gebruiken.
+
+Omdat ik tijdens het testen al een verkeerde waarde in `localStorage` had opgeslagen, heb ik deze eerst verwijderd en daarna de pagina opnieuw geladen. Vervolgens werkte het levelsysteem weer zoals verwacht.
+
+### Wat heb ik geleerd?
+
+Ik heb geleerd dat ik bij het werken met `localStorage` rekening moet houden met het verschil tussen een JavaScript-object en een JSON-string. Bij het opslaan gebruik ik `JSON.stringify()` en bij het ophalen gebruik ik `JSON.parse()`.
+
+Hierdoor weet ik nu beter hoe ik objecten met meerdere properties veilig kan opslaan en later weer kan gebruiken.
+
+
 ---
 
 # Coachgesprek

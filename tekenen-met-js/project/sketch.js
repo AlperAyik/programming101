@@ -1,6 +1,7 @@
 const balls = [];
-const buttons = document.querySelectorAll('button');
+const buttonsDifficulty = document.querySelectorAll('.difficulty-button');
 const audio = document.querySelector('audio');
+const levelButtons = document.querySelectorAll('.level-button');
 
 const CANVAS_WIDTH = 640;
 const CANVAS_HEIGHT = 480;
@@ -10,26 +11,77 @@ const STARTING_LIVES = 3;
 const EASY_BALL_AMOUNT = 20;
 const EXTRA_HARD_BALL_AMOUNT = 25;
 const SCORE_INTERVAL = 60;
+const LEVELS = {
+    level1: {
+        open: true,
+        highScoreRequired: 0,
+        highScore: 0
+    },
+    level2: {
+        open: false,
+        highScoreRequired: 1000,
+        highScore: 0
+    },
+    level3: {
+        open: false,
+        highScoreRequired: 2000,
+        highScore: 0
+    }
+}
 
 let shipX = 310;
 let shipY = 440;
 let amount = EASY_BALL_AMOUNT;
 let playing = false;
 let score = 0;
-let powerUpActive = false;
 let pause = false;
 let lives = STARTING_LIVES;
 let num = 2;
 let difficulty = 'Makkelijk';
 let difficultyText = document.getElementById('current-difficulty');
-let highScore = localStorage.getItem('highscore') || 0;
+let levelText = document.getElementById('current-level');
+let highScore = localStorage.getItem('highscore') || 0; // later verwijderen
+let levels = JSON.parse(localStorage.getItem('levels')) || LEVELS;
 
-buttons.forEach((button) => {
+console.log(levels)
+
+buttonsDifficulty.forEach((button) => {
     button.addEventListener('click', () => {
         setDifficulty(button.textContent);
         difficultyText.textContent = button.textContent;
     });
 });
+
+levelButtons.forEach((button) => {
+
+    button.addEventListener('click', () => {
+        if (button.textContent === 'Level 1') {
+            levels.level1.open = true;
+            levels.level2.open = false;
+            levels.level3.open = false;
+            levelText.textContent = button.textContent;
+        } else if (button.textContent === 'Level 2') {
+            if (levels.level1.highScore >= 1000) {
+                levels.level1.open = false;
+                levels.level2.open = true;
+                levels.level3.open = false;
+                levelText.textContent = button.textContent;
+            } else {
+                alert('Je moet een score van meer dan 1000 hebben om level 2 te ontgrendelen!');
+            }
+
+        } else if (button.textContent === 'Level 3') {
+            if (levels.level2.highScore >= 2000) {
+                levels.level1.open = false;
+                levels.level2.open = false;
+                levels.level3.open = true;
+                levelText.textContent = button.textContent;
+            } else {
+                alert('Je moet een score van meer dan 2000 hebben om level 3 te ontgrendelen!');
+            }
+        }
+    })
+})
 
 function setup() {
     createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -39,7 +91,7 @@ function setup() {
 
 function draw() {
     if (playing) {
-        buttons.forEach((button) => {
+        buttonsDifficulty.forEach((button) => {
             button.style.display = 'none';
         });
 
@@ -55,6 +107,11 @@ function draw() {
             drawScore();
 
             score++;
+            // if (score / SCORE_INTERVAL > 1000) {
+            //     alert('Gefeliciteerd! Je hebt level 2 ontgrendeld!');
+            // } else if (score / SCORE_INTERVAL > 2000) {
+            //     alert('Gefeliciteerd! Je hebt level 3 ontgrendeld!');
+            // }
         }
     } else {
         startMenu();
@@ -83,7 +140,14 @@ function setDifficulty(selectedDifficulty) {
 }
 
 function drawBackground() {
-    background(10, 15, 35);
+    if (levels.level1.open) {
+        background(10, 15, 35);
+    } else if (levels.level2.open) {
+        background(0, 0, 0);
+    } else if (levels.level3.open) {
+        background(20, 20, 20);
+    }
+    //test 1
 
     fill(255);
     noStroke();
@@ -141,24 +205,26 @@ function createBalls() {
 function updateBallSpeed() {
     for (let ball of balls) {
         if (score / SCORE_INTERVAL > 100 && difficulty === 'Makkelijk') {
-            ball.vy = 2.5;
+            ball.vy = random(2, 2.5);
             score += 0.5;
+
         } else if (
             score / SCORE_INTERVAL > 50 &&
             difficulty === 'Makkelijk'
         ) {
-            ball.vy = 1.5;
+            ball.vy = random(1, 1.5);
             score += 0.3;
+
         }
 
         if (score / SCORE_INTERVAL > 100 && difficulty === 'Moeilijk') {
-            ball.vy = 1.5;
+            ball.vy = random(1.5, 2);
             score += 0.5;
         } else if (
             score / SCORE_INTERVAL > 100 &&
             difficulty === 'Extra moeilijk'
         ) {
-            ball.vy = 1.2;
+            ball.vy = random(1.2, 1.5);
             score += 0.5;
         }
     }
@@ -226,15 +292,13 @@ function checkCollision() {
 
         if (distance < radius) {
             if (lives > 0) {
-                if (powerUpActive === false) {
-                    ball.y = -radius;
-                    ball.x = random(radius, width - radius);
-                    lives--;
-                }
+                ball.y = -radius;
+                ball.x = random(radius, width - radius);
+                lives--;
             } else {
-                buttons.forEach((button) => {
-                    button.style.display = 'block';
-                });
+                // buttons.forEach((button) => {
+                //     button.style.display = 'block';
+                // });
 
                 gameOver();
                 playAudio('./assets/audio/Game Over.mp3');
@@ -354,11 +418,27 @@ function startMenu() {
         height / 2
     );
 
-    text(
-        `High score: ${highScore}`,
-        width / 2,
-        height / 2 + 30
-    );
+
+    if (levels.level1.open) {
+        text(
+            `High score: ${levels.level1.highScore}`,
+            width / 2,
+            height / 2 + 30
+        );
+    } else if (levels.level2.open) {
+        text(
+            `High score: ${levels.level2.highScore}`,
+            width / 2,
+            height / 2 + 30
+        );
+    } else if (levels.level3.open) {
+        text(
+            `High score: ${levels.level3.highScore}`,
+            width / 2,
+            height / 2 + 30
+        );
+    }
+
 }
 
 function drawLives() {
@@ -438,9 +518,21 @@ function updateHighScore() {
         score / SCORE_INTERVAL
     );
 
-    if (currentScore > highScore) {
-        highScore = currentScore;
-        localStorage.setItem('highscore', highScore);
+    if (levels.level1.open) {
+        if (currentScore > levels.level1.highScore) {
+            levels.level1.highScore = currentScore;
+            localStorage.setItem('levels', JSON.stringify(levels));
+        }
+    } else if (levels.level2.open) {
+        if (currentScore > levels.level2.highScore) {
+            levels.level2.highScore = currentScore;
+            localStorage.setItem('levels', JSON.stringify(levels));
+        }
+    } else if (levels.level3.open) {
+        if (currentScore > levels.level3.highScore) {
+            levels.level3.highScore = currentScore;
+            localStorage.setItem('levels', JSON.stringify(levels));
+        }
     }
 }
 
@@ -459,7 +551,7 @@ function doubleClicked() {
 
         audio.pause();
 
-        buttons.forEach((button) => {
+        buttonsDifficulty.forEach((button) => {
             button.style.display = 'block';
         });
 

@@ -199,9 +199,7 @@ Ik gebruik drie prioriteiten voor mijn user stories:
 
 **Prioriteit:** Could have
 
-**User story**
-
-Als speler wil ik tijdens het spelen een power-up kunnen oppakken, zodat ik tijdelijk immuun ben voor botsingen met meteorieten.
+**Als speler wil ik tijdens het spelen een power-up kunnen oppakken, zodat ik tijdelijk immuun ben voor botsingen met meteorieten.**
 
 ### Acceptatiecriteria
 
@@ -211,6 +209,25 @@ Als speler wil ik tijdens het spelen een power-up kunnen oppakken, zodat ik tijd
 * [ ] Tijdens de immuniteit verliezen botsingen geen levens.
 * [ ] Na afloop van de bepaalde tijd vervalt de immuniteit.
 * [ ] De power-up verdwijnt nadat deze is opgepakt.
+
+---
+
+## 14. Levelsysteem
+
+**Prioriteit:** Could have
+
+**Als speler wil ik verschillende levels kunnen vrijspelen, zodat ik steeds nieuwe uitdagingen kan krijgen naarmate mijn score hoger wordt.**
+
+### Acceptatiecriteria
+
+* [x] Er zijn meerdere levels beschikbaar.
+* [x] Level 1 is vanaf het begin beschikbaar.
+* [x] Level 2 kan worden vrijgespeeld wanneer de speler de vereiste highscore behaalt.
+* [x] Level 3 kan worden vrijgespeeld wanneer de speler de vereiste highscore behaalt.
+* [x] De speler kan tussen vrijgespeelde levels kiezen.
+* [x] De highscore van ieder level wordt afzonderlijk bijgehouden.
+* [x] De voortgang van de levels wordt opgeslagen, zodat vrijgespeelde levels behouden blijven wanneer de game opnieuw wordt geopend.
+* [x] Ieder level kan een eigen achtergrond en moeilijkheid hebben.
 
 ---
 
@@ -224,7 +241,7 @@ Op **29-09-2026** ontstond het idee om niet direct game over te gaan wanneer de 
 
 Op **30-09-2026** heb ik dit verder uitgewerkt tijdens het programmeren van de botsingen. De game gebruikt nu een levenssysteem waarbij een botsing één leven kost.
 
-Daarnaast is het idee ontstaan om later een **health power-up** toe te voegen waarmee de speler extra gezondheid of een extra leven kan krijgen. Dit is toegevoegd als user story 13.
+Daarnaast is het idee ontstaan om later een **health power-up** toe te voegen waarmee de speler extra gezondheid of een extra leven kan krijgen. Dit is toegevoegd als **user story 13**.
 
 ## Moeilijkheid verhogen
 
@@ -233,6 +250,18 @@ Op **30-09-2026 / 01-10-2026** is het idee verder uitgewerkt om de game moeilijk
 De bedoeling hiervan is dat de game niet gedurende het hele spel dezelfde moeilijkheid houdt. Wanneer de speler langer overleeft en meer punten behaalt, kunnen bijvoorbeeld de ballen sneller gaan bewegen.
 
 Dit is verwerkt in **user story 12**.
+
+## Levelsysteem
+
+Tijdens de verdere ontwikkeling van het project is het idee ontstaan om meerdere levels aan de game toe te voegen. Hierdoor kan de speler niet alleen proberen een hoge score te behalen, maar ook nieuwe levels vrijspelen.
+
+Het levelsysteem bestaat uit drie levels. **Level 1** is vanaf het begin beschikbaar. **Level 2** wordt ontgrendeld wanneer de speler de vereiste highscore behaalt en **Level 3** wordt daarna op basis van een hogere highscore ontgrendeld.
+
+Daarnaast heb ik ervoor gekozen om de voortgang van de levels op te slaan met `localStorage`. Hierdoor blijven de highscores en vrijgespeelde levels bewaard wanneer de game opnieuw wordt geopend.
+
+De levels hebben daarnaast hun eigen achtergrond en kunnen worden gebruikt om de game steeds verder uit te breiden.
+
+Dit is verwerkt in **user story 14**.
 
 ---
 
@@ -243,9 +272,11 @@ Tijdens het ontwikkelen van mijn project verzamel ik feedback van anderen. Deze 
 ### Feedback 1
 
 **Datum:**
+
 01-10-2026
 
 **Van:**
+
 Akshay
 
 **Feedback:**
@@ -253,15 +284,16 @@ Akshay
 * [x] Feedback ontvangen.
 * [x] Feedback verwerkt.
 
-
-Om het spel interactief te maken maak gebruik van background muziek bij verschillende interacties Death, movement en highscore
+> Om het spel interactief te maken, maak gebruik van backgroundmuziek bij verschillende interacties, zoals death, movement en highscore.
 
 ### Feedback 2
 
 **Datum:**
+
 01-10-2026
 
 **Van:**
+
 Akshay
 
 **Feedback:**
@@ -269,14 +301,16 @@ Akshay
 * [x] Feedback ontvangen.
 * [x] Feedback verwerkt.
 
-Maak een leuke background animation
+> Maak een leuke background animation.
 
-### Feedback 2
+### Feedback 3
 
 **Datum:**
+
 01-10-2026
 
 **Van:**
+
 Akshay
 
 **Feedback:**
@@ -284,15 +318,18 @@ Akshay
 * [x] Feedback ontvangen.
 * [x] Feedback verwerkt.
 
-Je hebt nu als speler een circle maak er iets leuks van bijv een space ship
+> Je hebt nu als speler een circle. Maak er iets leuks van, bijvoorbeeld een spaceship.
 
 ### Verwerkte feedback
 
 Na het ontvangen van feedback beschrijf ik hier welke aanpassingen ik daadwerkelijk in mijn project heb gedaan.
 
-Ik heb beide feedback punten verwerkt in mijn project zo ziet het spel een stuk leuker uit ziet, ik heb een soort space background die beweegt toegepast en ik heb leuke background muziek toegevoegd tijdens het spelen, highscore en gameover
+Ik heb de ontvangen feedback verwerkt in mijn project. Om het spel interactiever te maken, heb ik backgroundmuziek toegevoegd tijdens het spelen en bij verschillende situaties, zoals game over en de highscore.
 
-Op **01-10-2026** heb ik voor de speler een spaceship animation gemaakt zodat het echt voelt als een space game inplaats van een paar ballen
+Daarnaast heb ik een bewegende space-background toegevoegd. Hierdoor voelt het speelveld meer als een ruimteomgeving en is er tijdens het spelen meer visuele beweging.
+
+Op **01-10-2026** heb ik voor de speler een spaceship gemaakt. Hierdoor past de speler beter bij het thema van de game en voelt het project meer als een space game in plaats van een game met alleen een eenvoudige cirkel als speler.
+
 ---
 
 # Schetsen
@@ -322,7 +359,7 @@ Hier voeg ik mijn schetsen toe van de verschillende schermen en onderdelen van d
 
 ## Extra onderdelen
 
-*Hier komen eventuele schetsen van nieuwe onderdelen, zoals health power-ups en de moeilijkheidsopbouw.*
+*Hier komen eventuele schetsen van nieuwe onderdelen, zoals health power-ups, het levelsysteem en de moeilijkheidsopbouw.*
 
 * [ ] Schets gemaakt.
 * [ ] Schets toegevoegd aan het document.
