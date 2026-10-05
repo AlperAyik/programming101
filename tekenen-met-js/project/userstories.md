@@ -335,24 +335,19 @@ Op **01-10-2026** heb ik voor de speler een spaceship gemaakt. Hierdoor past de 
 # Schetsen
 
 Hier voeg ik mijn schetsen toe van de verschillende schermen en onderdelen van de game.
+check schetsen onder assets/schetsen
 
 ## Startmenu
-
-*Hier komt de schets van het startmenu.*
 
 * [x] Schets gemaakt.
 * [x] Schets toegevoegd aan het document.
 
 ## Gameplay
 
-*Hier komt de schets van het gameplay-scherm.*
-
 * [x] Schets gemaakt.
 * [x] Schets toegevoegd aan het document.
 
 ## Game over
-
-*Hier komt de schets van het game-over scherm.*
 
 * [x] Schets gemaakt.
 * [x] Schets toegevoegd aan het document.
