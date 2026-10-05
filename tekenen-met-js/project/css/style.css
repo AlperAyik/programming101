@@ -1,8 +1,8 @@
 * {
-    margin: 1;
-    padding: 1;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 body {
@@ -10,46 +10,47 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    background: rgb(10, 15, 35);
+    padding: 30px 20px;
+    background: #080d20;
+    font-family: Arial, sans-serif;
 }
 
 .game-info {
     width: 100%;
-    max-width: 950px;
+    max-width: 1000px;
     margin: 0 auto;
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 18px;
+    gap: 20px;
 }
 
-/* Titel */
-.game-info > div:first-child {
+.game-info>div:first-child {
     grid-column: 1 / -1;
     text-align: center;
-    padding: 10px 0 25px;
+    padding: 15px 0 25px;
     background: transparent;
     border: none;
 }
 
 h1 {
-    font-size: 38px;
+    font-size: 42px;
     font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
 }
 
-.game-info > div:first-child p {
-    color: #9fb2cc;
+.game-info>div:first-child p {
+    color: #8fa6c7;
     font-size: 16px;
 }
 
-/* Content blokken */
-.game-info > div:not(:first-child) {
-    background: #0b1d3a;
-    border: 1px solid #193b68;
-    border-radius: 8px;
-    padding: 24px;
+.game-info>div:not(:first-child) {
+    background: #0c1730;
+    border: 1px solid #1b3761;
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
 
 h2 {
@@ -61,13 +62,13 @@ h2 {
 
 p,
 li {
-    color: #b8c8dc;
+    color: #b7c7dd;
     font-size: 15px;
     line-height: 1.6;
 }
 
 ul {
-    padding-left: 19px;
+    padding-left: 20px;
 }
 
 li {
@@ -78,31 +79,34 @@ strong {
     color: #eaf2ff;
 }
 
-/* Moeilijkheid kiezen */
-.game-info > div:last-child {
-    grid-column: 1 / -1;
-    text-align: center;
-}
-
-.game-info > div:last-child p {
+.difficulty,
+.levels {
+    display: block;
     margin-bottom: 15px;
+    color: #9fb3cf;
 }
 
-/* Buttons */
+#current-difficulty,
+#current-level {
+    color: #ffffff;
+    font-weight: 600;
+}
+
 .buttons {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 button {
-    border: 1px solid #2b6098;
-    background: #12325b;
+    border: 1px solid #315d91;
+    background: #122b50;
     color: #ffffff;
 
-    padding: 10px 20px;
+    padding: 10px 18px;
     margin: 4px;
 
-    border-radius: 6px;
+    border-radius: 7px;
     font-size: 14px;
     font-weight: 600;
 
@@ -111,31 +115,83 @@ button {
 }
 
 button:hover {
-    background: #1a477c;
-    border-color: #3d7fbd;
+    background: #1b4275;
+    border-color: #4b83bd;
+    transform: translateY(-1px);
 }
 
 button:active {
     transform: translateY(1px);
 }
 
-/* Mobiel */
+.level-button {
+    min-width: 100px;
+}
+
+.game-info>div:nth-last-child(1) {
+    grid-column: 1 / -1;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+
+    background: #0a142b;
+}
+
+.game-info>div:nth-last-child(1)>div {
+    background: #0f1e3b;
+    border: 1px solid #1b3761;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+}
+
+.game-info>div:nth-last-child(1) h2 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.game-info>div:nth-last-child(1) p {
+    font-size: 14px;
+    color: #9fb3cf;
+}
+
+#highscore-level1,
+#highscore-level2,
+#highscore-level3 {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+}
+
 @media (max-width: 700px) {
+    body {
+        padding: 20px 12px;
+    }
+
     .game-info {
         grid-template-columns: 1fr;
     }
 
-    .game-info > div:first-child,
-    .game-info > div:last-child {
+    .game-info>div:first-child,
+    .game-info>div:last-child {
         grid-column: auto;
     }
 
     h1 {
-        font-size: 32px;
+        font-size: 34px;
+    }
+
+    .game-info>div:nth-last-child(1) {
+        grid-template-columns: 1fr;
     }
 
     button {
         width: 100%;
         margin: 4px 0;
+    }
+
+    .buttons {
+        flex-direction: column;
     }
 }
