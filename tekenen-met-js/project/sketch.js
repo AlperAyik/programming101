@@ -46,6 +46,7 @@ let pause = false;
 let lives = STARTING_LIVES;
 let num = 2;
 let difficulty = 'Makkelijk';
+let chosenLevel = false;
 
 let difficultyText = document.getElementById('current-difficulty');
 let levelText = document.getElementById('current-level');
@@ -113,6 +114,7 @@ levelButtons.forEach((button) => {
                 );
             }
         }
+        chosenLevel = true;
     });
 });
 
@@ -150,7 +152,7 @@ function draw() {
             checkCollision();
             drawScore();
 
-            score++;
+            score += deltaTime / 1000;
         }
 
     } else {
@@ -841,7 +843,7 @@ function drawScore() {
     );
 
     text(
-        `Score: ${Math.floor(score / SCORE_INTERVAL)}`,
+        `Score: ${Math.floor(score)}`,
         width - 10,
         20
     );
@@ -869,7 +871,7 @@ function updateHighScore() {
 
     const currentScore =
         Math.floor(
-            score / SCORE_INTERVAL
+            score
         );
 
     if (levels.level1.open) {
@@ -924,7 +926,14 @@ function updateHighScore() {
 
 function doubleClicked() {
 
-    if (playing === false) {
+    if(chosenLevel === false) {
+
+        alert(
+            'Kies eerst een level voordat je het spel start!'
+        );
+    }
+
+    if (playing === false && chosenLevel === true) {
 
         createBackground();
 
@@ -940,7 +949,7 @@ function doubleClicked() {
 
         loop();
 
-    } else {
+    } else if(playing === true && chosenLevel === true) {
 
         resetGame();
 

@@ -241,7 +241,7 @@ Op **29-09-2026** ontstond het idee om niet direct game over te gaan wanneer de 
 
 Op **30-09-2026** heb ik dit verder uitgewerkt tijdens het programmeren van de botsingen. De game gebruikt nu een levenssysteem waarbij een botsing één leven kost.
 
-Daarnaast is het idee ontstaan om later een **health power-up** toe te voegen waarmee de speler extra gezondheid of een extra leven kan krijgen. Dit is toegevoegd als **user story 13**.
+Daarnaast is het idee ontstaan om later een **power-up** toe te voegen waarmee de speler voor een bepaalde tijd geen levens verliest tijdens botsingen.
 
 ## Moeilijkheid verhogen
 
@@ -356,10 +356,3 @@ Hier voeg ik mijn schetsen toe van de verschillende schermen en onderdelen van d
 
 * [x] Schets gemaakt.
 * [x] Schets toegevoegd aan het document.
-
-## Extra onderdelen
-
-*Hier komen eventuele schetsen van nieuwe onderdelen, zoals health power-ups, het levelsysteem en de moeilijkheidsopbouw.*
-
-* [ ] Schets gemaakt.
-* [ ] Schets toegevoegd aan het document.

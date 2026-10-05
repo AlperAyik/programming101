@@ -21,7 +21,7 @@ Tijdens het spelen wordt het spel steeds moeilijker. Bij hogere scores versnelle
 
 ### Makkelijk
 
-* Beweeg de muis om het ruimteschip te besturen.
+* `Muis` - beweeg het ruimteschip
 
 ### Moeilijk
 
@@ -85,8 +85,14 @@ Voor de ontwikkeling van dit project is gebruikgemaakt van de officiële p5.js-d
 
 * [p5.js Documentation](https://p5js.org/reference/)
 
+De achtergrondanimatie van het spel is gebaseerd op de volgende p5.js-sketch:
+
+* [p5.js Sketch – ChickabeeJJ](https://editor.p5js.org/ChickabeeJJ/sketches/BJzlw_WeE)
+
+Ik heb de gebruikte achtergrondlogica aangepast en verder uitgewerkt voor mijn eigen game. De achtergrond is onderdeel geworden van mijn eigen project en is aangepast aan het thema en de functionaliteiten van de game. De oorspronkelijke bron wordt hier vermeld om duidelijk aan te geven waar de basis van deze logica vandaan komt.
+
 De muziek/audio in het spel is afkomstig van de volgende bron:
 
 * [Space Invaders (1991) - KHInsider](https://downloads.khinsider.com/game-soundtracks/album/space-invaders-91-genesis)
 
-De gebruikte externe bronnen zijn alleen gebruikt als documentatie en/of bron voor de gebruikte audio. De game zelf is door mij ontwikkeld voor het Programming 101-project.
+De gebruikte externe bronnen zijn alleen gebruikt als documentatie, inspiratie en/of bron voor de gebruikte audio. De game zelf, de gameplay en de verdere uitwerking zijn door mij ontwikkeld voor het Programming 101-project.
