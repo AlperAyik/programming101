@@ -203,22 +203,3 @@ Omdat ik tijdens het testen al een verkeerde waarde in `localStorage` had opgesl
 Ik heb geleerd dat ik bij het werken met `localStorage` rekening moet houden met het verschil tussen een JavaScript-object en een JSON-string. Bij het opslaan gebruik ik `JSON.stringify()` en bij het ophalen gebruik ik `JSON.parse()`.
 
 Hierdoor weet ik nu beter hoe ik objecten met meerdere properties veilig kan opslaan en later weer kan gebruiken.
-
-
----
-
-# Coachgesprek
-
-## Feedback
-
-**Datum:** Nog in te vullen
-
-Tijdens het coachgesprek bespreek ik mijn Debugging Report en mijn aanpak bij het oplossen van problemen. Hier noteer ik de feedback die ik tijdens het gesprek krijg en eventuele verbeterpunten die ik daarna in mijn code of werkwijze toepas.
-
-**Feedback:**
-
-* Nog in te vullen.
-
-**Wat heb ik met de feedback gedaan?**
-
-* Nog in te vullen.
